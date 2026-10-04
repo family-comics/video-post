@@ -61,30 +61,11 @@ button{
   font-size:14px;
 }
 
-.primary{
-  background:#111;
-  color:white;
-}
-
-.green{
-  background:#16833b;
-  color:white;
-}
-
-.red{
-  background:#d62828;
-  color:white;
-}
-
-.blue{
-  background:#1769aa;
-  color:white;
-}
-
-.gray{
-  background:#ddd;
-  color:#222;
-}
+.primary{background:#111;color:white}
+.green{background:#16833b;color:white}
+.red{background:#d62828;color:white}
+.blue{background:#1769aa;color:white}
+.gray{background:#ddd;color:#222}
 
 input[type="email"],
 input[type="password"],
@@ -102,13 +83,9 @@ input[type="file"]{
   gap:5px;
 }
 
-.tabs button{
-  flex:1;
-}
+.tabs button{flex:1}
 
-.hidden{
-  display:none!important;
-}
+.hidden{display:none!important}
 
 .message{
   text-align:center;
@@ -210,9 +187,7 @@ input[type="file"]{
   font-size:13px;
 }
 
-.member-list{
-  margin-top:8px;
-}
+.member-list{margin-top:8px}
 
 .member-card{
   border:1px solid #ddd;
@@ -234,18 +209,11 @@ input[type="file"]{
 }
 
 @media(max-width:420px){
+  .container{padding:7px}
 
-  .container{
-    padding:7px;
-  }
+  header h1{font-size:22px}
 
-  header h1{
-    font-size:22px;
-  }
-
-  .video-card video{
-    height:125px;
-  }
+  .video-card video{height:125px}
 
   button{
     font-size:13px;
@@ -306,16 +274,11 @@ input[type="file"]{
         🔐 Admin Login
       </button>
 
-      <div
-        id="adminLoginMsg"
-        class="message">
-      </div>
+      <div id="adminLoginMsg" class="message"></div>
 
     </div>
 
-    <div
-      id="joinBox"
-      class="hidden">
+    <div id="joinBox" class="hidden">
 
       <h3>👥 Website Join</h3>
 
@@ -330,10 +293,7 @@ input[type="file"]{
         👥 Join
       </button>
 
-      <div
-        id="joinMsg"
-        class="message">
-      </div>
+      <div id="joinMsg" class="message"></div>
 
     </div>
 
@@ -344,9 +304,7 @@ input[type="file"]{
 
 <!-- PENDING -->
 
-<div
-  id="pendingArea"
-  class="hidden">
+<div id="pendingArea" class="hidden">
 
   <div class="box">
 
@@ -379,9 +337,7 @@ input[type="file"]{
 
 <!-- MEMBER -->
 
-<div
-  id="memberArea"
-  class="hidden">
+<div id="memberArea" class="hidden">
 
   <div class="box">
 
@@ -393,23 +349,11 @@ input[type="file"]{
       ✅ আপনি অনুমোদিত Member
     </div>
 
-    <button
-      class="gray"
-      onclick="goHome()">
-      🏠 Home
-    </button>
+    <button class="gray" onclick="goHome()">🏠 Home</button>
 
-    <button
-      class="gray"
-      onclick="goBack()">
-      ⬅️ Back
-    </button>
+    <button class="gray" onclick="goBack()">⬅️ Back</button>
 
-    <button
-      class="red"
-      onclick="logout()">
-      🚪 Exit
-    </button>
+    <button class="red" onclick="logout()">🚪 Exit</button>
 
   </div>
 
@@ -417,16 +361,11 @@ input[type="file"]{
 
     <h3>📁 Folders</h3>
 
-    <div
-      id="memberFolderPath"
-      class="small">
+    <div id="memberFolderPath" class="small">
       📁 Home
     </div>
 
-    <div
-      id="memberFolders"
-      class="folder-grid">
-    </div>
+    <div id="memberFolders" class="folder-grid"></div>
 
   </div>
 
@@ -434,9 +373,7 @@ input[type="file"]{
 
     <h3>🎬 ভিডিও</h3>
 
-    <div
-      id="memberVideoList"
-      class="video-grid">
+    <div id="memberVideoList" class="video-grid">
       লোড হচ্ছে...
     </div>
 
@@ -447,9 +384,7 @@ input[type="file"]{
 
 <!-- ADMIN -->
 
-<div
-  id="adminArea"
-  class="hidden">
+<div id="adminArea" class="hidden">
 
   <div class="box">
 
@@ -457,23 +392,11 @@ input[type="file"]{
       🛡️ Admin Panel
     </div>
 
-    <button
-      class="gray"
-      onclick="goHome()">
-      🏠 Home
-    </button>
+    <button class="gray" onclick="goHome()">🏠 Home</button>
 
-    <button
-      class="gray"
-      onclick="goBack()">
-      ⬅️ Back
-    </button>
+    <button class="gray" onclick="goBack()">⬅️ Back</button>
 
-    <button
-      class="red"
-      onclick="logout()">
-      🚪 Logout
-    </button>
+    <button class="red" onclick="logout()">🚪 Logout</button>
 
   </div>
 
@@ -546,16 +469,11 @@ input[type="file"]{
       🗑️ Delete
     </button>
 
-    <div
-      id="folderPath"
-      class="small">
+    <div id="folderPath" class="small">
       📁 Home
     </div>
 
-    <div
-      id="folders"
-      class="folder-grid">
-    </div>
+    <div id="folders" class="folder-grid"></div>
 
   </div>
 
@@ -578,10 +496,7 @@ input[type="file"]{
       📤 ভিডিও পোস্ট করুন
     </button>
 
-    <div
-      id="uploadMsg"
-      class="message">
-    </div>
+    <div id="uploadMsg" class="message"></div>
 
   </div>
 
@@ -592,9 +507,7 @@ input[type="file"]{
 
     <h3>🎬 পোস্ট করা ভিডিও</h3>
 
-    <div
-      id="videoList"
-      class="video-grid">
+    <div id="videoList" class="video-grid">
       লোড হচ্ছে...
     </div>
 
@@ -606,10 +519,6 @@ input[type="file"]{
 
 
 <script>
-
-/* =========================
-   SUPABASE
-========================= */
 
 const SUPABASE_URL =
 "https://sxyjlixnwayoouzccnuv.supabase.co";
@@ -626,11 +535,6 @@ supabase.createClient(
   SUPABASE_KEY
 );
 
-
-/* =========================
-   VARIABLES
-========================= */
-
 let currentFolder = null;
 let folderHistory = [];
 
@@ -640,10 +544,6 @@ const ADMIN_FOLDER_KEY =
 const MEMBER_FOLDER_KEY =
 "videoPost_member_folder";
 
-
-/* =========================
-   SAVE CURRENT FOLDER
-========================= */
 
 function saveCurrentFolder(){
 
@@ -659,24 +559,15 @@ function saveCurrentFolder(){
     : ADMIN_FOLDER_KEY;
 
   if(currentFolder === null){
-
     localStorage.removeItem(key);
-
   }else{
-
     localStorage.setItem(
       key,
       String(currentFolder)
     );
-
   }
-
 }
 
-
-/* =========================
-   RESTORE FOLDER
-========================= */
 
 async function restoreFolder(mode){
 
@@ -689,24 +580,17 @@ async function restoreFolder(mode){
     localStorage.getItem(key);
 
   if(!saved){
-
     currentFolder = null;
     folderHistory = [];
-
     return;
-
   }
 
-  const folderId =
-    Number(saved);
+  const folderId = Number(saved);
 
   if(!Number.isFinite(folderId)){
-
     currentFolder = null;
     folderHistory = [];
-
     return;
-
   }
 
   const {data,error} =
@@ -717,27 +601,16 @@ async function restoreFolder(mode){
       .maybeSingle();
 
   if(error || !data){
-
     localStorage.removeItem(key);
-
     currentFolder = null;
     folderHistory = [];
-
     return;
-
   }
 
-  currentFolder =
-    folderId;
-
+  currentFolder = folderId;
   folderHistory = [];
-
 }
 
-
-/* =========================
-   LOGIN / JOIN
-========================= */
 
 function showLogin(type){
 
@@ -750,71 +623,49 @@ function showLogin(type){
     .classList.add("hidden");
 
   if(type === "admin"){
-
     document
       .getElementById("adminLogin")
       .classList.remove("hidden");
-
   }
 
   if(type === "join"){
-
     document
       .getElementById("joinBox")
       .classList.remove("hidden");
-
   }
-
 }
 
-
-/* =========================
-   ADMIN LOGIN
-========================= */
 
 async function adminLogin(){
 
   const email =
-    document
-      .getElementById("email")
-      .value
-      .trim();
+    document.getElementById("email").value.trim();
 
   const password =
-    document
-      .getElementById("password")
-      .value;
+    document.getElementById("password").value;
 
   const msg =
-    document
-      .getElementById("adminLoginMsg");
+    document.getElementById("adminLoginMsg");
 
   if(!email || !password){
-
     msg.innerText =
       "⚠️ Email ও Password দিন";
-
     return;
   }
 
-  msg.innerText =
-    "⏳ Login হচ্ছে...";
+  msg.innerText = "⏳ Login হচ্ছে...";
 
   const {data,error} =
     await supabaseClient.auth
       .signInWithPassword({
-
         email,
         password
-
       });
 
   if(error){
-
     msg.innerText =
       "❌ Login হয়নি: " +
       error.message;
-
     return;
   }
 
@@ -829,26 +680,19 @@ async function adminLogin(){
   }
 
   showAdmin();
-
 }
 
-
-/* =========================
-   JOIN REQUEST
-========================= */
 
 async function sendJoinRequest(){
 
   const msg =
-    document
-      .getElementById("joinMsg");
+    document.getElementById("joinMsg");
 
   msg.innerText =
     "⏳ Join করা হচ্ছে...";
 
   let sessionResult =
-    await supabaseClient.auth
-      .getSession();
+    await supabaseClient.auth.getSession();
 
   if(!sessionResult.data.session){
 
@@ -857,14 +701,11 @@ async function sendJoinRequest(){
         .signInAnonymously();
 
     if(error){
-
       msg.innerText =
         "❌ Join করা যায়নি: " +
         error.message;
-
       return;
     }
-
   }
 
   const {data:status,error:statusError} =
@@ -873,40 +714,30 @@ async function sendJoinRequest(){
     );
 
   if(statusError){
-
     msg.innerText =
       "❌ Status check হয়নি: " +
       statusError.message;
-
     return;
   }
 
   if(status === "approved"){
-
     showMember();
-
     return;
   }
 
   if(status === "pending"){
-
     showPending();
-
     return;
   }
 
   const {data:userData} =
-    await supabaseClient.auth
-      .getUser();
+    await supabaseClient.auth.getUser();
 
-  const user =
-    userData.user;
+  const user = userData.user;
 
   if(!user){
-
     msg.innerText =
       "❌ User পাওয়া যায়নি";
-
     return;
   }
 
@@ -914,32 +745,21 @@ async function sendJoinRequest(){
     await supabaseClient
       .from("members")
       .insert({
-
         id:Date.now(),
-
         user_id:user.id,
-
         status:"pending"
-
       });
 
   if(error){
-
     msg.innerText =
       "❌ Join Request পাঠানো যায়নি: " +
       error.message;
-
     return;
   }
 
   showPending();
-
 }
 
-
-/* =========================
-   CHECK STATUS
-========================= */
 
 async function checkMyStatus(){
 
@@ -949,29 +769,21 @@ async function checkMyStatus(){
     );
 
   if(error){
-
     alert(
       "❌ Status check হয়নি\n" +
       error.message
     );
-
     return;
   }
 
   if(data === "approved"){
-
     showMember();
-
     return;
-
   }
 
   if(data === "pending"){
-
     showPending();
-
     return;
-
   }
 
   if(data === "rejected"){
@@ -986,85 +798,57 @@ async function checkMyStatus(){
     showLogin("join");
 
     return;
-
   }
 
   showPublic();
   showLogin("join");
-
 }
 
-
-/* =========================
-   SHOW PUBLIC
-========================= */
 
 function showPublic(){
 
-  document
-    .getElementById("publicArea")
+  document.getElementById("publicArea")
     .classList.remove("hidden");
 
-  document
-    .getElementById("pendingArea")
+  document.getElementById("pendingArea")
     .classList.add("hidden");
 
-  document
-    .getElementById("memberArea")
+  document.getElementById("memberArea")
     .classList.add("hidden");
 
-  document
-    .getElementById("adminArea")
+  document.getElementById("adminArea")
     .classList.add("hidden");
-
 }
 
-
-/* =========================
-   SHOW PENDING
-========================= */
 
 function showPending(){
 
-  document
-    .getElementById("publicArea")
+  document.getElementById("publicArea")
     .classList.add("hidden");
 
-  document
-    .getElementById("memberArea")
+  document.getElementById("memberArea")
     .classList.add("hidden");
 
-  document
-    .getElementById("adminArea")
+  document.getElementById("adminArea")
     .classList.add("hidden");
 
-  document
-    .getElementById("pendingArea")
+  document.getElementById("pendingArea")
     .classList.remove("hidden");
-
 }
 
 
-/* =========================
-   SHOW MEMBER
-========================= */
-
 async function showMember(){
 
-  document
-    .getElementById("publicArea")
+  document.getElementById("publicArea")
     .classList.add("hidden");
 
-  document
-    .getElementById("pendingArea")
+  document.getElementById("pendingArea")
     .classList.add("hidden");
 
-  document
-    .getElementById("adminArea")
+  document.getElementById("adminArea")
     .classList.add("hidden");
 
-  document
-    .getElementById("memberArea")
+  document.getElementById("memberArea")
     .classList.remove("hidden");
 
   await restoreFolder("member");
@@ -1073,30 +857,21 @@ async function showMember(){
 
   loadMemberFolders();
   loadMemberVideos();
-
 }
 
 
-/* =========================
-   SHOW ADMIN
-========================= */
-
 async function showAdmin(){
 
-  document
-    .getElementById("publicArea")
+  document.getElementById("publicArea")
     .classList.add("hidden");
 
-  document
-    .getElementById("pendingArea")
+  document.getElementById("pendingArea")
     .classList.add("hidden");
 
-  document
-    .getElementById("memberArea")
+  document.getElementById("memberArea")
     .classList.add("hidden");
 
-  document
-    .getElementById("adminArea")
+  document.getElementById("adminArea")
     .classList.remove("hidden");
 
   await restoreFolder("admin");
@@ -1108,62 +883,41 @@ async function showAdmin(){
     location.pathname +
     "?join=1";
 
-  document
-    .getElementById("inviteLink")
-    .value =
+  document.getElementById("inviteLink").value =
     link;
 
   loadMembers();
   loadFolders();
   loadVideos();
-
 }
 
-
-/* =========================
-   INVITE LINK
-========================= */
 
 function copyInviteLink(){
 
   const input =
-    document
-      .getElementById("inviteLink");
+    document.getElementById("inviteLink");
 
   navigator.clipboard
     .writeText(input.value)
     .then(() => {
-
-      alert(
-        "✅ Invite Link Copy হয়েছে"
-      );
-
+      alert("✅ Invite Link Copy হয়েছে");
     })
     .catch(() => {
 
       input.select();
 
-      document
-        .execCommand("copy");
+      document.execCommand("copy");
 
-      alert(
-        "✅ Invite Link Copy হয়েছে"
-      );
+      alert("✅ Invite Link Copy হয়েছে");
 
     });
-
 }
 
-
-/* =========================
-   MEMBERS
-========================= */
 
 async function loadMembers(){
 
   const box =
-    document
-      .getElementById("memberRequests");
+    document.getElementById("memberRequests");
 
   box.innerHTML =
     "⏳ Members লোড হচ্ছে...";
@@ -1187,20 +941,15 @@ async function loadMembers(){
 
   const pending =
     (data || []).filter(
-      member =>
-        member.status === "pending"
+      member => member.status === "pending"
     );
 
   const approved =
     (data || []).filter(
-      member =>
-        member.status === "approved"
+      member => member.status === "approved"
     );
 
   box.innerHTML = "";
-
-  const total =
-    approved.length;
 
   const summary =
     document.createElement("div");
@@ -1210,7 +959,7 @@ async function loadMembers(){
 
   summary.innerHTML =
     "🟢 বর্তমানে Approved Member: <b>" +
-    total +
+    approved.length +
     "</b>" +
     "<br>" +
     "⏳ Pending Request: <b>" +
@@ -1218,9 +967,6 @@ async function loadMembers(){
     "</b>";
 
   box.appendChild(summary);
-
-
-  /* Pending */
 
   if(pending.length > 0){
 
@@ -1233,9 +979,7 @@ async function loadMembers(){
     pendingTitle.innerHTML =
       "<b>⏳ Pending Requests</b>";
 
-    box.appendChild(
-      pendingTitle
-    );
+    box.appendChild(pendingTitle);
 
     const pendingList =
       document.createElement("div");
@@ -1244,21 +988,13 @@ async function loadMembers(){
       "member-list";
 
     pending.forEach(member => {
-
       pendingList.appendChild(
         createMemberCard(member)
       );
-
     });
 
-    box.appendChild(
-      pendingList
-    );
-
+    box.appendChild(pendingList);
   }
-
-
-  /* Approved */
 
   if(approved.length > 0){
 
@@ -1280,18 +1016,14 @@ async function loadMembers(){
       "member-list hidden";
 
     approved.forEach(member => {
-
       list.appendChild(
         createMemberCard(member)
       );
-
     });
 
     toggle.onclick = () => {
 
-      list.classList.toggle(
-        "hidden"
-      );
+      list.classList.toggle("hidden");
 
       toggle.innerText =
         list.classList.contains("hidden")
@@ -1308,9 +1040,7 @@ async function loadMembers(){
 
     box.appendChild(toggle);
     box.appendChild(list);
-
   }
-
 
   if(
     pending.length === 0 &&
@@ -1330,15 +1060,9 @@ async function loadMembers(){
       "এখন কোনো Active Member বা Pending Request নেই।";
 
     box.appendChild(empty);
-
   }
-
 }
 
-
-/* =========================
-   MEMBER CARD
-========================= */
 
 function createMemberCard(member){
 
@@ -1353,18 +1077,14 @@ function createMemberCard(member){
   if(member.status === "pending"){
 
     html += `
-      <div>
-        <b>⏳ Join Request</b>
-      </div>
+      <div><b>⏳ Join Request</b></div>
 
       <div class="small">
         Member ID
       </div>
 
       <div class="member-id">
-        ${escapeHtml(
-          member.user_id || ""
-        )}
+        ${escapeHtml(member.user_id || "")}
       </div>
 
       <div class="actions">
@@ -1387,18 +1107,14 @@ function createMemberCard(member){
   }else{
 
     html += `
-      <div>
-        <b>✅ Approved Member</b>
-      </div>
+      <div><b>✅ Approved Member</b></div>
 
       <div class="small">
         Member ID
       </div>
 
       <div class="member-id">
-        ${escapeHtml(
-          member.user_id || ""
-        )}
+        ${escapeHtml(member.user_id || "")}
       </div>
 
       <div class="actions">
@@ -1411,20 +1127,13 @@ function createMemberCard(member){
 
       </div>
     `;
-
   }
 
-  div.innerHTML =
-    html;
+  div.innerHTML = html;
 
   return div;
-
 }
 
-
-/* =========================
-   APPROVE
-========================= */
 
 async function approveMember(id){
 
@@ -1446,25 +1155,17 @@ async function approveMember(id){
     return;
   }
 
-  alert(
-    "✅ Member Approved"
-  );
+  alert("✅ Member Approved");
 
   loadMembers();
-
 }
 
-
-/* =========================
-   REJECT
-========================= */
 
 async function rejectMember(id){
 
   if(!confirm(
     "এই Join Request Reject করবেন?"
   )){
-
     return;
   }
 
@@ -1487,20 +1188,14 @@ async function rejectMember(id){
   }
 
   loadMembers();
-
 }
 
-
-/* =========================
-   REMOVE MEMBER
-========================= */
 
 async function removeMember(id){
 
   if(!confirm(
     "এই Member-কে Remove করবেন?"
   )){
-
     return;
   }
 
@@ -1522,24 +1217,16 @@ async function removeMember(id){
     return;
   }
 
-  alert(
-    "✅ Member Remove হয়েছে"
-  );
+  alert("✅ Member Remove হয়েছে");
 
   loadMembers();
-
 }
 
-
-/* =========================
-   FOLDER PATH
-========================= */
 
 function updateAdminFolderPath(){
 
   const path =
-    document
-      .getElementById("folderPath");
+    document.getElementById("folderPath");
 
   if(currentFolder === null){
 
@@ -1547,7 +1234,6 @@ function updateAdminFolderPath(){
       "📁 Home";
 
     return;
-
   }
 
   const savedName =
@@ -1556,22 +1242,16 @@ function updateAdminFolderPath(){
     );
 
   if(savedName){
-
     path.innerText =
       "📁 " + savedName;
-
   }
-
 }
 
 
 function updateMemberFolderPath(){
 
   const path =
-    document
-      .getElementById(
-        "memberFolderPath"
-      );
+    document.getElementById("memberFolderPath");
 
   if(currentFolder === null){
 
@@ -1579,7 +1259,6 @@ function updateMemberFolderPath(){
       "📁 Home";
 
     return;
-
   }
 
   const savedName =
@@ -1588,24 +1267,16 @@ function updateMemberFolderPath(){
     );
 
   if(savedName){
-
     path.innerText =
       "📁 " + savedName;
-
   }
-
 }
 
-
-/* =========================
-   FOLDERS
-========================= */
 
 async function loadFolders(){
 
   const box =
-    document
-      .getElementById("folders");
+    document.getElementById("folders");
 
   box.innerHTML = "";
 
@@ -1616,9 +1287,7 @@ async function loadFolders(){
     "folder";
 
   if(currentFolder === null){
-
     home.classList.add("active");
-
   }
 
   home.innerHTML =
@@ -1641,11 +1310,9 @@ async function loadFolders(){
 
     loadFolders();
     loadVideos();
-
   };
 
   box.appendChild(home);
-
 
   const {data,error} =
     await supabaseClient
@@ -1663,7 +1330,6 @@ async function loadFolders(){
     return;
   }
 
-
   data.forEach(folder => {
 
     const div =
@@ -1673,9 +1339,7 @@ async function loadFolders(){
       "folder";
 
     if(currentFolder === folder.id){
-
       div.classList.add("active");
-
     }
 
     div.innerHTML =
@@ -1685,15 +1349,10 @@ async function loadFolders(){
     div.onclick = () => {
 
       if(currentFolder !== null){
-
-        folderHistory.push(
-          currentFolder
-        );
-
+        folderHistory.push(currentFolder);
       }
 
-      currentFolder =
-        folder.id;
+      currentFolder = folder.id;
 
       localStorage.setItem(
         ADMIN_FOLDER_KEY,
@@ -1705,34 +1364,24 @@ async function loadFolders(){
         folder.name
       );
 
-      document
-        .getElementById("folderPath")
+      document.getElementById("folderPath")
         .innerText =
         "📁 " + folder.name;
 
       loadFolders();
       loadVideos();
-
     };
 
     box.appendChild(div);
 
   });
-
 }
 
-
-/* =========================
-   MEMBER FOLDERS
-========================= */
 
 async function loadMemberFolders(){
 
   const box =
-    document
-      .getElementById(
-        "memberFolders"
-      );
+    document.getElementById("memberFolders");
 
   box.innerHTML = "";
 
@@ -1743,9 +1392,7 @@ async function loadMemberFolders(){
     "folder";
 
   if(currentFolder === null){
-
     home.classList.add("active");
-
   }
 
   home.innerHTML =
@@ -1768,11 +1415,9 @@ async function loadMemberFolders(){
 
     loadMemberFolders();
     loadMemberVideos();
-
   };
 
   box.appendChild(home);
-
 
   const {data,error} =
     await supabaseClient
@@ -1792,7 +1437,6 @@ async function loadMemberFolders(){
     return;
   }
 
-
   (data || []).forEach(folder => {
 
     const div =
@@ -1802,9 +1446,7 @@ async function loadMemberFolders(){
       "folder";
 
     if(currentFolder === folder.id){
-
       div.classList.add("active");
-
     }
 
     div.innerHTML =
@@ -1814,15 +1456,10 @@ async function loadMemberFolders(){
     div.onclick = () => {
 
       if(currentFolder !== null){
-
-        folderHistory.push(
-          currentFolder
-        );
-
+        folderHistory.push(currentFolder);
       }
 
-      currentFolder =
-        folder.id;
+      currentFolder = folder.id;
 
       localStorage.setItem(
         MEMBER_FOLDER_KEY,
@@ -1834,28 +1471,20 @@ async function loadMemberFolders(){
         folder.name
       );
 
-      document
-        .getElementById(
-          "memberFolderPath"
-        )
-        .innerText =
+      document.getElementById(
+        "memberFolderPath"
+      ).innerText =
         "📁 " + folder.name;
 
       loadMemberFolders();
       loadMemberVideos();
-
     };
 
     box.appendChild(div);
 
   });
-
 }
 
-
-/* =========================
-   CREATE FOLDER
-========================= */
 
 async function createFolder(){
 
@@ -1865,20 +1494,15 @@ async function createFolder(){
     );
 
   if(!name || !name.trim()){
-
     return;
-
   }
 
   const {error} =
     await supabaseClient
       .from("folders")
       .insert({
-
         id:Date.now(),
-
         name:name.trim()
-
       });
 
   if(error){
@@ -1891,18 +1515,11 @@ async function createFolder(){
     return;
   }
 
-  alert(
-    "✅ Folder তৈরি হয়েছে"
-  );
+  alert("✅ Folder তৈরি হয়েছে");
 
   loadFolders();
-
 }
 
-
-/* =========================
-   RENAME
-========================= */
 
 async function renameFolder(){
 
@@ -1928,23 +1545,16 @@ async function renameFolder(){
     );
 
   if(!newName || !newName.trim()){
-
     return;
-
   }
 
   const {error} =
     await supabaseClient
       .from("folders")
       .update({
-
         name:newName.trim()
-
       })
-      .eq(
-        "id",
-        currentFolder
-      );
+      .eq("id",currentFolder);
 
   if(error){
 
@@ -1967,13 +1577,8 @@ async function renameFolder(){
     "📁 " + newName.trim();
 
   loadFolders();
-
 }
 
-
-/* =========================
-   DELETE FOLDER
-========================= */
 
 async function deleteFolder(){
 
@@ -1989,7 +1594,6 @@ async function deleteFolder(){
   if(!confirm(
     "এই Folder Delete করবেন?"
   )){
-
     return;
   }
 
@@ -1997,10 +1601,7 @@ async function deleteFolder(){
     await supabaseClient
       .from("folders")
       .delete()
-      .eq(
-        "id",
-        currentFolder
-      );
+      .eq("id",currentFolder);
 
   if(error){
 
@@ -2027,35 +1628,23 @@ async function deleteFolder(){
 
   loadFolders();
   loadVideos();
-
 }
 
-
-/* =========================
-   BACK
-========================= */
 
 function goBack(){
 
   if(folderHistory.length > 0){
-
     currentFolder =
       folderHistory.pop();
-
   }else{
-
-    currentFolder =
-      null;
-
+    currentFolder = null;
   }
-
 
   const memberVisible =
     !document
       .getElementById("memberArea")
       .classList
       .contains("hidden");
-
 
   if(memberVisible){
 
@@ -2075,8 +1664,9 @@ function goBack(){
         MEMBER_FOLDER_KEY,
         String(currentFolder)
       );
-
     }
+
+    updateMemberFolderPath();
 
     loadMemberFolders();
     loadMemberVideos();
@@ -2099,20 +1689,15 @@ function goBack(){
         ADMIN_FOLDER_KEY,
         String(currentFolder)
       );
-
     }
+
+    updateAdminFolderPath();
 
     loadFolders();
     loadVideos();
-
   }
-
 }
 
-
-/* =========================
-   HOME
-========================= */
 
 function goHome(){
 
@@ -2124,7 +1709,6 @@ function goHome(){
       .getElementById("memberArea")
       .classList
       .contains("hidden");
-
 
   if(memberVisible){
 
@@ -2155,34 +1739,20 @@ function goHome(){
 
     loadFolders();
     loadVideos();
-
   }
-
 }
 
-
-/* =========================
-   UPLOAD MULTIPLE VIDEOS
-========================= */
 
 async function uploadVideos(){
 
   const input =
-    document
-      .getElementById(
-        "videoFiles"
-      );
+    document.getElementById("videoFiles");
 
   const msg =
-    document
-      .getElementById(
-        "uploadMsg"
-      );
+    document.getElementById("uploadMsg");
 
   const files =
-    Array.from(
-      input.files
-    );
+    Array.from(input.files);
 
   if(files.length === 0){
 
@@ -2190,7 +1760,6 @@ async function uploadVideos(){
       "⚠️ ভিডিও নির্বাচন করুন";
 
     return;
-
   }
 
   msg.innerText =
@@ -2206,8 +1775,7 @@ async function uploadVideos(){
     i++
   ){
 
-    const file =
-      files[i];
+    const file = files[i];
 
     msg.innerText =
       "⏳ ভিডিও " +
@@ -2236,13 +1804,8 @@ async function uploadVideos(){
         );
 
     if(uploadError){
-
-      console.log(
-        uploadError
-      );
-
+      console.log(uploadError);
       continue;
-
     }
 
     const {error:dbError} =
@@ -2250,17 +1813,13 @@ async function uploadVideos(){
         .from("videos")
         .insert({
 
-          id:
-            Date.now()+i,
+          id:Date.now()+i,
 
-          title:
-            file.name,
+          title:file.name,
 
-          file_path:
-            safeName,
+          file_path:safeName,
 
-          folder_id:
-            currentFolder
+          folder_id:currentFolder
 
         });
 
@@ -2273,16 +1832,12 @@ async function uploadVideos(){
           safeName
         ]);
 
-      console.log(
-        dbError
-      );
+      console.log(dbError);
 
       continue;
-
     }
 
     success++;
-
   }
 
   input.value = "";
@@ -2293,21 +1848,13 @@ async function uploadVideos(){
     "টি ভিডিও সফলভাবে পোস্ট হয়েছে";
 
   loadVideos();
-
 }
 
-
-/* =========================
-   LOAD ADMIN VIDEOS
-========================= */
 
 async function loadVideos(){
 
   const box =
-    document
-      .getElementById(
-        "videoList"
-      );
+    document.getElementById("videoList");
 
   box.innerHTML =
     "⏳ ভিডিও লোড হচ্ছে...";
@@ -2318,9 +1865,7 @@ async function loadVideos(){
       .select("*")
       .order(
         "created_at",
-        {
-          ascending:false
-        }
+        {ascending:false}
       );
 
   if(currentFolder === null){
@@ -2338,7 +1883,6 @@ async function loadVideos(){
         "folder_id",
         currentFolder
       );
-
   }
 
   const {data,error} =
@@ -2353,10 +1897,7 @@ async function loadVideos(){
     return;
   }
 
-  if(
-    !data ||
-    data.length === 0
-  ){
+  if(!data || data.length === 0){
 
     box.innerHTML =
       "<div class='small'>" +
@@ -2380,23 +1921,16 @@ async function loadVideos(){
       box,
       true
     );
-
   }
-
 }
 
-
-/* =========================
-   LOAD MEMBER VIDEOS
-========================= */
 
 async function loadMemberVideos(){
 
   const box =
-    document
-      .getElementById(
-        "memberVideoList"
-      );
+    document.getElementById(
+      "memberVideoList"
+    );
 
   box.innerHTML =
     "⏳ ভিডিও লোড হচ্ছে...";
@@ -2409,9 +1943,7 @@ async function loadMemberVideos(){
       )
       .order(
         "created_at",
-        {
-          ascending:false
-        }
+        {ascending:false}
       );
 
   if(currentFolder === null){
@@ -2429,7 +1961,6 @@ async function loadMemberVideos(){
         "folder_id",
         currentFolder
       );
-
   }
 
   const {data,error} =
@@ -2444,10 +1975,7 @@ async function loadMemberVideos(){
     return;
   }
 
-  if(
-    !data ||
-    data.length === 0
-  ){
+  if(!data || data.length === 0){
 
     box.innerHTML =
       "<div class='small'>" +
@@ -2471,15 +1999,9 @@ async function loadMemberVideos(){
       box,
       false
     );
-
   }
-
 }
 
-
-/* =========================
-   VIDEO CARD
-========================= */
 
 async function createVideoCard(
   video,
@@ -2513,7 +2035,6 @@ async function createVideoCard(
     box.appendChild(card);
 
     return;
-
   }
 
   const card =
@@ -2529,6 +2050,7 @@ async function createVideoCard(
       controlsList="nodownload"
       disablePictureInPicture
       preload="metadata"
+      oncontextmenu="return false"
       src="${data.signedUrl}">
     </video>
 
@@ -2539,8 +2061,7 @@ async function createVideoCard(
       </span>
 
       ${escapeHtml(
-        video.title ||
-        "Video"
+        video.title || "Video"
       )}
 
     </div>
@@ -2578,13 +2099,8 @@ async function createVideoCard(
   `;
 
   box.appendChild(card);
-
 }
 
-
-/* =========================
-   OPEN VIDEO
-========================= */
 
 function openVideo(url){
 
@@ -2592,13 +2108,8 @@ function openVideo(url){
     url,
     "_blank"
   );
-
 }
 
-
-/* =========================
-   DELETE VIDEO
-========================= */
 
 async function deleteVideo(
   id,
@@ -2608,9 +2119,7 @@ async function deleteVideo(
   if(!confirm(
     "এই ভিডিও Delete করবেন?"
   )){
-
     return;
-
   }
 
   const {error:storageError} =
@@ -2635,10 +2144,7 @@ async function deleteVideo(
     await supabaseClient
       .from("videos")
       .delete()
-      .eq(
-        "id",
-        id
-      );
+      .eq("id",id);
 
   if(dbError){
 
@@ -2650,18 +2156,11 @@ async function deleteVideo(
     return;
   }
 
-  alert(
-    "✅ ভিডিও Delete হয়েছে"
-  );
+  alert("✅ ভিডিও Delete হয়েছে");
 
   loadVideos();
-
 }
 
-
-/* =========================
-   LOGOUT
-========================= */
 
 async function logout(){
 
@@ -2670,71 +2169,28 @@ async function logout(){
   location.href =
     location.pathname +
     "?join=1";
-
 }
 
-
-/* =========================
-   HELPERS
-========================= */
 
 function escapeHtml(text){
 
   return String(text)
-
-    .replace(
-      /&/g,
-      "&amp;"
-    )
-
-    .replace(
-      /</g,
-      "&lt;"
-    )
-
-    .replace(
-      />/g,
-      "&gt;"
-    )
-
-    .replace(
-      /"/g,
-      "&quot;"
-    )
-
-    .replace(
-      /'/g,
-      "&#039;"
-    );
-
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 }
 
 
 function escapeJs(text){
 
   return String(text)
-
-    .replace(
-      /\\/g,
-      "\\\\"
-    )
-
-    .replace(
-      /'/g,
-      "\\'"
-    )
-
-    .replace(
-      /"/g,
-      "\\\""
-    );
-
+    .replace(/\\/g,"\\\\")
+    .replace(/'/g,"\\'")
+    .replace(/"/g,"\\\"");
 }
 
-
-/* =========================
-   PAGE START
-========================= */
 
 window.addEventListener(
   "load",
@@ -2744,9 +2200,6 @@ window.addEventListener(
       await supabaseClient.auth
         .getSession();
 
-
-    /* ADMIN */
-
     if(
       data.session &&
       data.session.user.id === ADMIN_ID
@@ -2755,11 +2208,7 @@ window.addEventListener(
       showAdmin();
 
       return;
-
     }
-
-
-    /* MEMBER / ANONYMOUS */
 
     if(
       data.session &&
@@ -2774,19 +2223,13 @@ window.addEventListener(
       if(!error){
 
         if(status === "approved"){
-
           showMember();
-
           return;
-
         }
 
         if(status === "pending"){
-
           showPending();
-
           return;
-
         }
 
         if(status === "rejected"){
@@ -2797,21 +2240,14 @@ window.addEventListener(
           showLogin("join");
 
           return;
-
         }
-
       }
-
     }
-
-
-    /* INVITE LINK */
 
     showPublic();
 
     if(
-      location.search
-        .includes("join=1")
+      location.search.includes("join=1")
     ){
 
       showLogin("join");
@@ -2829,10 +2265,3 @@ window.addEventListener(
 
 </body>
 </html>
-
-এখন এটা তোমার "index.html"-এর পুরো replacement। পুরোনো কোড পুরোটা মুছে এটা বসিয়ে commit/publish করো।
-
-Member-এর জন্য: "⬇️ Download" আর থাকবে না, এবং ভিডিও player-এ সাধারণ Download control-ও লুকানো থাকবে।
-Admin-এর Delete button আগের মতোই থাকবে।
-
-একটা কথা মনে রেখো: Download button/normal browser control বন্ধ করা যায়, কিন্তু ওয়েবে কোনো ভিডিওকে ১০০% copy/save করা আটকানো যায় না।
