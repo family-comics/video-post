@@ -2526,6 +2526,8 @@ async function createVideoCard(
 
     <video
       controls
+      controlsList="nodownload"
+      disablePictureInPicture
       preload="metadata"
       src="${data.signedUrl}">
     </video>
@@ -2551,20 +2553,6 @@ async function createVideoCard(
           data.signedUrl
         )}')">
         ▶️ Open
-      </button>
-
-      <button
-        class="green"
-        onclick="downloadVideo(
-          '${escapeJs(
-            data.signedUrl
-          )}',
-          '${escapeJs(
-            video.title ||
-            "video"
-          )}'
-        )">
-        ⬇️ Download
       </button>
 
       ${
@@ -2604,63 +2592,6 @@ function openVideo(url){
     url,
     "_blank"
   );
-
-}
-
-
-/* =========================
-   DOWNLOAD
-========================= */
-
-async function downloadVideo(
-  url,
-  filename
-){
-
-  try{
-
-    const response =
-      await fetch(url);
-
-    const blob =
-      await response.blob();
-
-    const blobUrl =
-      URL.createObjectURL(
-        blob
-      );
-
-    const a =
-      document.createElement("a");
-
-    a.href =
-      blobUrl;
-
-    a.download =
-      filename;
-
-    document.body.appendChild(a);
-
-    a.click();
-
-    a.remove();
-
-    setTimeout(() => {
-
-      URL.revokeObjectURL(
-        blobUrl
-      );
-
-    },1000);
-
-  }catch(error){
-
-    window.open(
-      url,
-      "_blank"
-    );
-
-  }
 
 }
 
@@ -2898,3 +2829,10 @@ window.addEventListener(
 
 </body>
 </html>
+
+এখন এটা তোমার "index.html"-এর পুরো replacement। পুরোনো কোড পুরোটা মুছে এটা বসিয়ে commit/publish করো।
+
+Member-এর জন্য: "⬇️ Download" আর থাকবে না, এবং ভিডিও player-এ সাধারণ Download control-ও লুকানো থাকবে।
+Admin-এর Delete button আগের মতোই থাকবে।
+
+একটা কথা মনে রেখো: Download button/normal browser control বন্ধ করা যায়, কিন্তু ওয়েবে কোনো ভিডিওকে ১০০% copy/save করা আটকানো যায় না।
