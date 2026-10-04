@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Video Post</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f2f2f2;
+  color:#222;
+}
+
+header{
+  background:#111;
+  color:white;
+  text-align:center;
+  padding:14px 10px;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+header h1{
+  margin:0;
+  font-size:24px;
+}
+
+header p{
+  margin:5px 0 0;
+  font-size:13px;
+  color:#ccc;
+}
+
+.container{
+  width:100%;
+  max-width:700px;
+  margin:auto;
+  padding:10px;
+}
+
+.box{
+  background:white;
+  border-radius:10px;
+  padding:12px;
+  margin-bottom:10px;
+  box-shadow:0 1px 5px #ddd;
+}
+
+h2{
+  font-size:18px;
+  margin:0 0 10px;
+}
+
+input,
+select,
+button{
+  width:100%;
+  padding:11px;
+  margin:5px 0;
+  border-radius:7px;
+  border:1px solid #ccc;
+  font-size:14px;
+}
+
+button{
+  background:#111;
+  color:white;
+  border:0;
+  cursor:pointer;
+}
+
+button:disabled{
+  background:#999;
+}
+
+.logout{
+  background:#d00;
+}
+
+.message{
+  text-align:center;
+  padding:8px;
+  font-size:14px;
+}
+
+.hidden{
+  display:none;
+}
+
+.folder-list{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
+}
+
+.folder{
+  background:#eee;
+  padding:10px 5px;
+  border-radius:8px;
+  text-align:center;
+  font-size:13px;
+  cursor:pointer;
+}
+
+.folder.active{
+  background:#111;
+  color:white;
+}
+
+.video-list{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.video-card{
+  background:#fafafa;
+  border:1px solid #ddd;
+  border-radius:9px;
+  overflow:hidden;
+}
+
+.video-card video{
+  width:100%;
+  height:150px;
+  background:#000;
+  display:block;
+}
+
+.video-info{
+  padding:8px;
+}
+
+.video-title{
+  font-weight:bold;
+  font-size:14px;
+  margin-bottom:5px;
+  word-break:break-word;
+}
+
+.video-folder{
+  color:#777;
+  font-size:12px;
+  margin-bottom:5px;
+}
+
+.small-btn{
+  padding:8px;
+  font-size:12px;
+  margin:2px 0;
+}
+
+.download{
+  background:#087f23;
+}
+
+.delete{
+  background:#d00000;
+}
+
+.empty{
+  text-align:center;
+  color:#777;
+  padding:20px 5px;
+}
+
+@media(max-width:420px){
+
+  header h1{
+    font-size:21px;
+  }
+
+  .container{
+    padding:7px;
+  }
+
+  .video-list{
+    gap:7px;
+  }
+
+  .video-card video{
+    height:120px;
+  }
+
+  .folder-list{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .folder{
+    font-size:12px;
+    padding:9px 3px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🎬 Video Post</h1>
+  <p>ভিডিও শেয়ার করার সহজ জায়গা</p>
+</header>
+
+<div class="container">
+
+  <!-- LOGIN -->
+  <div id="loginBox" class="box">
+
+    <h2>🔐 Admin Login</h2>
+
+    <input
+      id="email"
+      type="email"
+      placeholder="Admin Email"
+    >
+
+    <input
+      id="password"
+      type="password"
+      placeholder="Password"
+    >
+
+    <button onclick="login()">
+      🔐 Login
+    </button>
+
+    <div id="loginMessage" class="message"></div>
+
+  </div>
+
+
+  <!-- ADMIN AREA -->
+  <div id="adminArea" class="hidden">
+
+    <div class="box">
+
+      <h2>👤 Admin Panel</h2>
+
+      <div id="adminEmail"
+           style="font-size:13px;color:#777;margin-bottom:6px;">
+      </div>
+
+      <button class="logout" onclick="logout()">
+        🚪 Logout
+      </button>
+
+    </div>
+
+
+    <!-- FOLDERS -->
+    <div class="box">
+
+      <h2>📁 Folders</h2>
+
+      <div class="folder-list" id="folderList">
+      </div>
+
+      <input
+        id="folderName"
+        type="text"
+        placeholder="নতুন Folder-এর নাম"
+      >
+
+      <button onclick="createFolder()">
+        📁 Folder তৈরি
+      </button>
+
+      <button
+        id="deleteFolderBtn"
+        class="delete"
+        onclick="deleteSelectedFolder()"
+      >
+        🗑️ Selected Folder Delete
+      </button>
+
+      <div id="folderMessage" class="message"></div>
+
+    </div>
+
+
+    <!-- UPLOAD -->
+    <div class="box">
+
+      <h2>📤 Video Post</h2>
+
+      <input
+        id="videoTitle"
+        type="text"
+        placeholder="ভিডিওর নাম"
+      >
+
+      <select id="videoFolder">
+        <option value="">📁 Home</option>
+      </select>
+
+      <input
+        id="videoFile"
+        type="file"
+        accept="video/*"
+      >
+
+      <button
+        id="uploadBtn"
+        onclick="uploadVideo()"
+      >
+        📤 Video Post করুন
+      </button>
+
+      <div id="uploadMessage" class="message"></div>
+
+    </div>
+
+
+    <!-- VIDEOS -->
+    <div class="box">
+
+      <h2>🎬 Posted Videos</h2>
+
+      <div id="videoList" class="video-list">
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* ==============================
+   SUPABASE
+============================== */
+
+const SUPABASE_URL =
+"https://sxyjlixnwayoouzccnuv.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_KAMMsvg-SY_8oFyk3b8Iqw_hAHx2Chr";
+
+const supabaseClient =
+supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+
+/* ==============================
+   ADMIN UUID
+============================== */
+
+const ADMIN_ID =
+"e6fcce5e-66bd-4399-ab92-69c1e9617c02";
+
+
+let selectedFolderId = null;
+let folders = [];
+
+
+/* ==============================
+   LOGIN
+============================== */
+
+async function login(){
+
+  const email =
+    document.getElementById("email").value.trim();
+
+  const password =
+    document.getElementById("password").value;
+
+  const msg =
+    document.getElementById("loginMessage");
+
+  if(!email || !password){
+
+    msg.innerText =
+      "⚠️ Email এবং Password দিন";
+
+    return;
+  }
+
+  msg.innerText =
+    "⏳ Login হচ্ছে...";
+
+  const { data, error } =
+    await supabaseClient.auth.signInWithPassword({
+      email:email,
+      password:password
+    });
+
+  if(error){
+
+    msg.innerText =
+      "❌ Login হয়নি: " + error.message;
+
+    return;
+  }
+
+  if(!data.user){
+
+    msg.innerText =
+      "❌ User পাওয়া যায়নি";
+
+    return;
+  }
+
+  if(data.user.id !== ADMIN_ID){
+
+    await supabaseClient.auth.signOut();
+
+    msg.innerText =
+      "❌ এই Account Admin নয়";
+
+    return;
+  }
+
+  msg.innerText =
+    "";
+
+  showAdmin(data.user);
+}
+
+
+/* ==============================
+   SHOW ADMIN
+============================== */
+
+async function showAdmin(user){
+
+  document
+    .getElementById("loginBox")
+    .classList.add("hidden");
+
+  document
+    .getElementById("adminArea")
+    .classList.remove("hidden");
+
+  document
+    .getElementById("adminEmail")
+    .innerText =
+      "Logged in: " + user.email;
+
+  await loadFolders();
+  await loadVideos();
+}
+
+
+/* ==============================
+   LOGOUT
+============================== */
+
+async function logout(){
+
+  await supabaseClient.auth.signOut();
+
+  location.reload();
+}
+
+
+/* ==============================
+   CHECK SESSION
+============================== */
+
+async function checkSession(){
+
+  const {
+    data
+  } = await supabaseClient.auth.getSession();
+
+  const session = data.session;
+
+  if(!session){
+    return;
+  }
+
+  if(session.user.id !== ADMIN_ID){
+
+    await supabaseClient.auth.signOut();
+
+    return;
+  }
+
+  showAdmin(session.user);
+}
+
+
+/* ==============================
+   LOAD FOLDERS
+============================== */
+
+async function loadFolders(){
+
+  const {
+    data,
+    error
+  } = await supabaseClient
+    .from("folders")
+    .select("*")
+    .order("created_at",{ascending:true});
+
+  if(error){
+
+    console.log(error);
+
+    return;
+  }
+
+  folders = data || [];
+
+  renderFolders();
+  renderFolderSelect();
+}
+
+
+/* ==============================
+   SHOW FOLDERS
+============================== */
+
+function renderFolders(){
+
+  const box =
+    document.getElementById("folderList");
+
+  box.innerHTML = "";
+
+  const home =
+    document.createElement("div");
+
+  home.className =
+    "folder" +
+    (selectedFolderId === null ? " active" : "");
+
+  home.innerHTML =
+    "🏠 Home";
+
+  home.onclick = function(){
+
+    selectedFolderId = null;
+
+    renderFolders();
+  };
+
+  box.appendChild(home);
+
+
+  folders.forEach(folder => {
+
+    const div =
+      document.createElement("div");
+
+    div.className =
+      "folder" +
+      (selectedFolderId === folder.id
+        ? " active"
+        : "");
+
+    div.innerHTML =
+      "📁 " +
+      escapeHtml(folder.name);
+
+    div.onclick = function(){
+
+      selectedFolderId = folder.id;
+
+      renderFolders();
+    };
+
+    box.appendChild(div);
+
+  });
+
+}
+
+
+/* ==============================
+   FOLDER SELECT
+============================== */
+
+function renderFolderSelect(){
+
+  const select =
+    document.getElementById("videoFolder");
+
+  select.innerHTML =
+    '<option value="">📁 Home</option>';
+
+  folders.forEach(folder => {
+
+    const option =
+      document.createElement("option");
+
+    option.value =
+      folder.id;
+
+    option.textContent =
+      "📁 " + folder.name;
+
+    select.appendChild(option);
+
+  });
+
+}
+
+
+/* ==============================
+   CREATE FOLDER
+============================== */
+
+async function createFolder(){
+
+  const input =
+    document.getElementById("folderName");
+
+  const msg =
+    document.getElementById("folderMessage");
+
+  const name =
+    input.value.trim();
+
+  if(!name){
+
+    msg.innerText =
+      "⚠️ Folder-এর নাম দিন";
+
+    return;
+  }
+
+  msg.innerText =
+    "⏳ Folder তৈরি হচ্ছে...";
+
+
+  const id =
+    Date.now();
+
+
+  const {
+    error
+  } = await supabaseClient
+    .from("folders")
+    .insert({
+      id:id,
+      name:name
+    });
+
+
+  if(error){
+
+    msg.innerText =
+      "❌ Folder তৈরি হয়নি: " +
+      error.message;
+
+    return;
+  }
+
+
+  input.value = "";
+
+  msg.innerText =
+    "✅ Folder তৈরি হয়েছে";
+
+  await loadFolders();
+}
+
+
+/* ==============================
+   DELETE FOLDER
+============================== */
+
+async function deleteSelectedFolder(){
+
+  const msg =
+    document.getElementById("folderMessage");
+
+  if(selectedFolderId === null){
+
+    msg.innerText =
+      "⚠️ আগে একটি Folder নির্বাচন করুন";
+
+    return;
+  }
+
+
+  const folder =
+    folders.find(
+      f => f.id === selectedFolderId
+    );
+
+
+  if(!folder){
+
+    return;
+  }
+
+
+  const ok =
+    confirm(
+      '"' +
+      folder.name +
+      '" Folder delete করবেন?'
+    );
+
+  if(!ok){
+    return;
+  }
+
+
+  msg.innerText =
+    "⏳ Folder delete হচ্ছে...";
+
+
+  const {
+    error
+  } = await supabaseClient
+    .from("folders")
+    .delete()
+    .eq("id",selectedFolderId);
+
+
+  if(error){
+
+    msg.innerText =
+      "❌ Folder delete হয়নি: " +
+      error.message;
+
+    return;
+  }
+
+
+  selectedFolderId = null;
+
+  msg.innerText =
+    "✅ Folder delete হয়েছে";
+
+  await loadFolders();
+  await loadVideos();
+}
+
+
+/* ==============================
+   UPLOAD VIDEO
+============================== */
+
+async function uploadVideo(){
+
+  const title =
+    document
+      .getElementById("videoTitle")
+      .value.trim();
+
+  const fileInput =
+    document.getElementById("videoFile");
+
+  const folderValue =
+    document.getElementById("videoFolder").value;
+
+  const msg =
+    document.getElementById("uploadMessage");
+
+  const btn =
+    document.getElementById("uploadBtn");
+
+
+  if(!title){
+
+    msg.innerText =
+      "⚠️ ভিডিওর নাম দিন";
+
+    return;
+  }
+
+
+  if(!fileInput.files.length){
+
+    msg.innerText =
+      "⚠️ একটি Video নির্বাচন করুন";
+
+    return;
+  }
+
+
+  const file =
+    fileInput.files[0];
+
+
+  if(!file.type.startsWith("video/")){
+
+    msg.innerText =
+      "❌ শুধু Video file দেওয়া যাবে";
+
+    return;
+  }
+
+
+  btn.disabled = true;
+
+  msg.innerText =
+    "⏳ Video Upload হচ্ছে...";
+
+
+  const extension =
+    file.name.includes(".")
+      ? file.name.split(".").pop()
+      : "mp4";
+
+
+  const filePath =
+    Date.now() +
+    "_" +
+    Math.random()
+      .toString(36)
+      .substring(2,10) +
+    "." +
+    extension;
+
+
+  const {
+    error:uploadError
+  } = await supabaseClient
+    .storage
+    .from("videos")
+    .upload(filePath,file);
+
+
+  if(uploadError){
+
+    btn.disabled = false;
+
+    msg.innerText =
+      "❌ Upload হয়নি: " +
+      uploadError.message;
+
+    return;
+  }
+
+
+  const insertData = {
+
+    id:Date.now(),
+
+    title:title,
+
+    file_path:filePath
+
+  };
+
+
+  if(folderValue){
+
+    insertData.folder_id =
+      Number(folderValue);
+
+  }
+
+
+  const {
+    error:dbError
+  } = await supabaseClient
+    .from("videos")
+    .insert(insertData);
+
+
+  if(dbError){
+
+    await supabaseClient
+      .storage
+      .from("videos")
+      .remove([filePath]);
+
+
+    btn.disabled = false;
+
+    msg.innerText =
+      "❌ Video তথ্য save হয়নি: " +
+      dbError.message;
+
+    return;
+  }
+
+
+  document
+    .getElementById("videoTitle")
+    .value = "";
+
+  fileInput.value = "";
+
+  btn.disabled = false;
+
+  msg.innerText =
+    "✅ Video Post হয়েছে ❤️";
+
+  await loadVideos();
+}
+
+
+/* ==============================
+   LOAD VIDEOS
+============================== */
+
+async function loadVideos(){
+
+  const box =
+    document.getElementById("videoList");
+
+  box.innerHTML =
+    '<div class="empty">⏳ Video লোড হচ্ছে...</div>';
+
+
+  let query =
+    supabaseClient
+      .from("videos")
+      .select("*")
+      .order("created_at",{ascending:false});
+
+
+  if(selectedFolderId !== null){
+
+    query =
+      query.eq(
+        "folder_id",
+        selectedFolderId
+      );
+
+  }
+
+
+  const {
+    data,
+    error
+  } = await query;
+
+
+  if(error){
+
+    box.innerHTML =
+      '<div class="empty">❌ Video লোড হয়নি</div>';
+
+    console.log(error);
+
+    return;
+  }
+
+
+  if(!data || data.length === 0){
+
+    box.innerHTML =
+      '<div class="empty">🎬 এখনো কোনো Video নেই</div>';
+
+    return;
+  }
+
+
+  box.innerHTML = "";
+
+
+  for(const video of data){
+
+    const card =
+      document.createElement("div");
+
+    card.className =
+      "video-card";
+
+
+    const folder =
+      folders.find(
+        f => f.id === video.folder_id
+      );
+
+
+    const folderName =
+      folder
+        ? folder.name
+        : "Home";
+
+
+    const {
+      data:signedData,
+      error:signedError
+    } = await supabaseClient
+      .storage
+      .from("videos")
+      .createSignedUrl(
+        video.file_path,
+        3600
+      );
+
+
+    if(signedError){
+
+      console.log(signedError);
+
+      card.innerHTML = `
+        <div class="video-info">
+          <div class="video-title">
+            ${escapeHtml(video.title)}
+          </div>
+          <div class="video-folder">
+            📁 ${escapeHtml(folderName)}
+          </div>
+          <div style="font-size:12px;color:#d00">
+            Video দেখানো যাচ্ছে না
+          </div>
+        </div>
+      `;
+
+      box.appendChild(card);
+
+      continue;
+    }
+
+
+    const url =
+      signedData.signedUrl;
+
+
+    card.innerHTML = `
+
+      <video
+        controls
+        preload="metadata"
+        src="${url}">
+      </video>
+
+      <div class="video-info">
+
+        <div class="video-title">
+          ${escapeHtml(video.title)}
+        </div>
+
+        <div class="video-folder">
+          📁 ${escapeHtml(folderName)}
+        </div>
+
+        <button
+          class="small-btn download"
+          onclick="downloadVideo('${escapeJs(url)}')"
+        >
+          ⬇️ Download
+        </button>
+
+        <button
+          class="small-btn delete"
+          onclick="deleteVideo(${video.id},'${escapeJs(video.file_path)}')"
+        >
+          🗑️ Delete
+        </button>
+
+      </div>
+    `;
+
+
+    box.appendChild(card);
+
+  }
+
+}
+
+
+/* ==============================
+   DOWNLOAD
+============================== */
+
+function downloadVideo(url){
+
+  const a =
+    document.createElement("a");
+
+  a.href = url;
+
+  a.target = "_blank";
+
+  a.download = "";
+
+  document.body.appendChild(a);
+
+  a.click();
+
+  a.remove();
+}
+
+
+/* ==============================
+   DELETE VIDEO
+============================== */
+
+async function deleteVideo(
+  id,
+  filePath
+){
+
+  const ok =
+    confirm(
+      "এই Video Delete করবেন?"
+    );
+
+  if(!ok){
+    return;
+  }
+
+
+  const {
+    error:storageError
+  } = await supabaseClient
+    .storage
+    .from("videos")
+    .remove([filePath]);
+
+
+  if(storageError){
+
+    alert(
+      "❌ Video file delete হয়নি: " +
+      storageError.message
+    );
+
+    return;
+  }
+
+
+  const {
+    error:dbError
+  } = await supabaseClient
+    .from("videos")
+    .delete()
+    .eq("id",id);
+
+
+  if(dbError){
+
+    alert(
+      "❌ Video তথ্য delete হয়নি: " +
+      dbError.message
+    );
+
+    return;
+  }
+
+
+  await loadVideos();
+}
+
+
+/* ==============================
+   SECURITY HELPERS
+============================== */
+
+function escapeHtml(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+
+function escapeJs(value){
+
+  return String(value ?? "")
+    .replace(/\\/g,"\\\\")
+    .replace(/'/g,"\\'");
+}
+
+
+/* ==============================
+   FOLDER CLICK
+============================== */
+
+document
+  .getElementById("folderList")
+  .addEventListener(
+    "click",
+    async function(){
+
+      await loadVideos();
+
+    }
+  );
+
+
+/* ==============================
+   START
+============================== */
+
+checkSession();
+
+</script>
+
+</body>
+</html>
