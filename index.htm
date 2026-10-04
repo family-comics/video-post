@@ -193,7 +193,17 @@ input[type="file"]{
   margin:5px 0;
 }
 
+.member-id{
+  background:#f5f5f5;
+  padding:8px;
+  border-radius:8px;
+  font-size:11px;
+  word-break:break-all;
+  margin:6px 0;
+}
+
 @media(max-width:420px){
+
   .container{
     padding:7px;
   }
@@ -223,123 +233,332 @@ input[type="file"]{
 
 <div class="container">
 
-<!-- LOGIN -->
-<div id="loginBox" class="box">
 
-  <div class="tabs">
-    <button class="primary" onclick="showLogin('admin')">🔐 Admin</button>
-    <button class="gray" onclick="showLogin('guest')">👤 Guest</button>
-    <button class="gray" onclick="showLogin('join')">👥 Join</button>
-  </div>
+<!-- =========================
+     PUBLIC AREA
+========================= -->
 
-  <!-- ADMIN LOGIN -->
-  <div id="adminLogin">
-    <h3>🔐 Admin Login</h3>
+<div id="publicArea">
 
-    <input id="email"
-      type="email"
-      placeholder="Admin Email">
+  <div class="box">
 
-    <input id="password"
-      type="password"
-      placeholder="Password">
+    <div class="tabs">
 
-    <button class="primary" onclick="adminLogin()">
-      🔐 Admin Login
-    </button>
+      <button
+        class="primary"
+        onclick="showLogin('admin')">
+        🔐 Admin
+      </button>
 
-    <div id="adminLoginMsg" class="message"></div>
-  </div>
+      <button
+        class="gray"
+        onclick="showLogin('join')">
+        👥 Join
+      </button>
 
-  <!-- GUEST LOGIN -->
-  <div id="guestLogin" class="hidden">
-    <h3>👤 Guest Login</h3>
-
-    <input id="guestId"
-      type="text"
-      placeholder="Guest ID লিখুন">
-
-    <button class="green" onclick="guestLogin()">
-      👤 Guest হিসেবে ঢুকুন
-    </button>
-
-    <div class="small">
-      আপনার পাওয়া Guest ID দিন
     </div>
 
-    <div id="guestLoginMsg" class="message"></div>
-  </div>
 
-  <!-- JOIN -->
-  <div id="joinBox" class="hidden">
-    <h3>👥 Website Join</h3>
+    <!-- ADMIN LOGIN -->
 
-    <p class="small">
-      ভিডিও দেখতে হলে আগে Member হিসেবে Join Request পাঠাতে হবে।
-      Admin অনুমোদন করার পর আপনি Guest ID পাবেন।
-    </p>
+    <div id="adminLogin">
 
-    <button class="blue" onclick="sendJoinRequest()">
-      👥 Join Request পাঠান
-    </button>
+      <h3>🔐 Admin Login</h3>
 
-    <div id="joinMsg" class="message"></div>
+      <input
+        id="email"
+        type="email"
+        placeholder="Admin Email">
+
+      <input
+        id="password"
+        type="password"
+        placeholder="Password">
+
+      <button
+        class="primary"
+        onclick="adminLogin()">
+        🔐 Admin Login
+      </button>
+
+      <div
+        id="adminLoginMsg"
+        class="message">
+      </div>
+
+    </div>
+
+
+    <!-- JOIN -->
+
+    <div
+      id="joinBox"
+      class="hidden">
+
+      <h3>👥 Website Join</h3>
+
+      <p class="small">
+        এই ওয়েবসাইটের ভিডিও দেখতে হলে
+        আগে Join করতে হবে।
+        Admin অনুমোদন করলে আপনি Member হয়ে
+        ভিডিও দেখতে পারবেন।
+      </p>
+
+      <button
+        class="blue"
+        onclick="sendJoinRequest()">
+        👥 Join
+      </button>
+
+      <div
+        id="joinMsg"
+        class="message">
+      </div>
+
+    </div>
+
   </div>
 
 </div>
 
 
-<!-- ADMIN AREA -->
-<div id="adminArea" class="hidden">
+<!-- =========================
+     PENDING AREA
+========================= -->
+
+<div
+  id="pendingArea"
+  class="hidden">
 
   <div class="box">
-    <div class="status">🛡️ Admin Panel</div>
 
-    <button class="gray" onclick="goHome()">🏠 Home</button>
-    <button class="gray" onclick="goBack()">⬅️ Back</button>
-    <button class="red" onclick="logout()">🚪 Logout</button>
-  </div>
+    <div class="status">
+      ⏳ Join Request Pending
+    </div>
 
-  <!-- MEMBER REQUESTS -->
-  <div class="box">
-    <h3>👥 Member Requests</h3>
+    <p class="message">
+      আপনার Join Request Admin-এর কাছে পাঠানো হয়েছে।
+      <br><br>
+      Admin Approve করলে আপনি ভিডিও দেখতে পারবেন।
+    </p>
 
-    <button class="blue" onclick="loadMemberRequests()">
-      🔄 Requests Refresh
+    <button
+      class="gray"
+      onclick="checkMyStatus()">
+      🔄 Status Check
     </button>
 
-    <div id="memberRequests">
-      Requests লোড হচ্ছে...
-    </div>
+    <button
+      class="red"
+      onclick="logout()">
+      🚪 Exit
+    </button>
+
   </div>
 
-  <!-- FOLDERS -->
+</div>
+
+
+<!-- =========================
+     MEMBER AREA
+========================= -->
+
+<div
+  id="memberArea"
+  class="hidden">
+
   <div class="box">
-    <h3>📁 Folders</h3>
 
-    <div>
-      <button class="primary" onclick="createFolder()">
-        ➕ Folder
-      </button>
-
-      <button class="blue" onclick="renameFolder()">
-        ✏️ Rename
-      </button>
-
-      <button class="red" onclick="deleteFolder()">
-        🗑️ Delete
-      </button>
+    <div class="status">
+      🎬 Member
     </div>
 
-    <div id="folderPath" class="small">
+    <div class="message">
+      ✅ আপনি অনুমোদিত Member
+    </div>
+
+    <button
+      class="gray"
+      onclick="goHome()">
+      🏠 Home
+    </button>
+
+    <button
+      class="red"
+      onclick="logout()">
+      🚪 Exit
+    </button>
+
+  </div>
+
+
+  <!-- FOLDERS -->
+
+  <div class="box">
+
+    <h3>📁 Folders</h3>
+
+    <div
+      id="memberFolderPath"
+      class="small">
       📁 Home
     </div>
 
-    <div id="folders" class="folder-grid"></div>
+    <div
+      id="memberFolders"
+      class="folder-grid">
+    </div>
+
   </div>
 
-  <!-- UPLOAD -->
+
+  <!-- VIDEOS -->
+
   <div class="box">
+
+    <h3>🎬 ভিডিও</h3>
+
+    <div
+      id="memberVideoList"
+      class="video-grid">
+      লোড হচ্ছে...
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     ADMIN AREA
+========================= -->
+
+<div
+  id="adminArea"
+  class="hidden">
+
+  <div class="box">
+
+    <div class="status">
+      🛡️ Admin Panel
+    </div>
+
+    <button
+      class="gray"
+      onclick="goHome()">
+      🏠 Home
+    </button>
+
+    <button
+      class="gray"
+      onclick="goBack()">
+      ⬅️ Back
+    </button>
+
+    <button
+      class="red"
+      onclick="logout()">
+      🚪 Logout
+    </button>
+
+  </div>
+
+
+  <!-- =========================
+       MEMBERS
+  ========================= -->
+
+  <div class="box">
+
+    <h3>👥 Members</h3>
+
+    <button
+      class="blue"
+      onclick="loadMembers()">
+      🔄 Refresh
+    </button>
+
+    <div
+      id="memberRequests">
+      লোড হচ্ছে...
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       INVITE LINK
+  ========================= -->
+
+  <div class="box">
+
+    <h3>🔗 Invite Link</h3>
+
+    <p class="small">
+      এই লিংক যাকে দিবে,
+      সে Website খুলে Join করতে পারবে।
+    </p>
+
+    <input
+      id="inviteLink"
+      type="text"
+      readonly>
+
+    <button
+      class="blue"
+      onclick="copyInviteLink()">
+      📋 Link Copy
+    </button>
+
+  </div>
+
+
+  <!-- =========================
+       FOLDERS
+  ========================= -->
+
+  <div class="box">
+
+    <h3>📁 Folders</h3>
+
+    <button
+      class="primary"
+      onclick="createFolder()">
+      ➕ Folder
+    </button>
+
+    <button
+      class="blue"
+      onclick="renameFolder()">
+      ✏️ Rename
+    </button>
+
+    <button
+      class="red"
+      onclick="deleteFolder()">
+      🗑️ Delete
+    </button>
+
+    <div
+      id="folderPath"
+      class="small">
+      📁 Home
+    </div>
+
+    <div
+      id="folders"
+      class="folder-grid">
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       UPLOAD
+  ========================= -->
+
+  <div class="box">
+
     <h3>📤 ভিডিও পোস্ট করুন</h3>
 
     <input
@@ -348,43 +567,34 @@ input[type="file"]{
       accept="video/*"
       multiple>
 
-    <button class="green" onclick="uploadVideos()">
+    <button
+      class="green"
+      onclick="uploadVideos()">
       📤 ভিডিও পোস্ট করুন
     </button>
 
-    <div id="uploadMsg" class="message"></div>
+    <div
+      id="uploadMsg"
+      class="message">
+    </div>
+
   </div>
 
-  <!-- VIDEOS -->
+
+  <!-- =========================
+       ADMIN VIDEOS
+  ========================= -->
+
   <div class="box">
+
     <h3>🎬 পোস্ট করা ভিডিও</h3>
 
-    <div id="videoList" class="video-grid">
+    <div
+      id="videoList"
+      class="video-grid">
       লোড হচ্ছে...
     </div>
-  </div>
 
-</div>
-
-
-<!-- GUEST AREA -->
-<div id="guestArea" class="hidden">
-
-  <div class="box">
-    <div class="status">👤 Guest Mode</div>
-
-    <div id="guestWelcome" class="message"></div>
-
-    <button class="gray" onclick="goHome()">🏠 Home</button>
-    <button class="red" onclick="logout()">🚪 Logout</button>
-  </div>
-
-  <div class="box">
-    <h3>🎬 ভিডিও</h3>
-
-    <div id="guestVideoList" class="video-grid">
-      লোড হচ্ছে...
-    </div>
   </div>
 
 </div>
@@ -393,6 +603,10 @@ input[type="file"]{
 
 
 <script>
+
+/* =========================
+   SUPABASE
+========================= */
 
 const SUPABASE_URL =
 "https://sxyjlixnwayoouzccnuv.supabase.co";
@@ -409,41 +623,47 @@ supabase.createClient(
   SUPABASE_KEY
 );
 
+
+/* =========================
+   VARIABLES
+========================= */
+
 let currentFolder = null;
 let folderHistory = [];
 
-let currentMode = "login";
-
 
 /* =========================
-   LOGIN TABS
+   LOGIN / JOIN
 ========================= */
 
 function showLogin(type){
 
-  document.getElementById("adminLogin")
+  document
+    .getElementById("adminLogin")
     .classList.add("hidden");
 
-  document.getElementById("guestLogin")
+  document
+    .getElementById("joinBox")
     .classList.add("hidden");
 
-  document.getElementById("joinBox")
-    .classList.add("hidden");
 
   if(type === "admin"){
-    document.getElementById("adminLogin")
+
+    document
+      .getElementById("adminLogin")
       .classList.remove("hidden");
+
   }
 
-  if(type === "guest"){
-    document.getElementById("guestLogin")
-      .classList.remove("hidden");
-  }
 
   if(type === "join"){
-    document.getElementById("joinBox")
+
+    document
+      .getElementById("joinBox")
       .classList.remove("hidden");
+
   }
+
 }
 
 
@@ -454,32 +674,53 @@ function showLogin(type){
 async function adminLogin(){
 
   const email =
-    document.getElementById("email").value.trim();
+    document
+      .getElementById("email")
+      .value
+      .trim();
 
   const password =
-    document.getElementById("password").value;
+    document
+      .getElementById("password")
+      .value;
 
   const msg =
-    document.getElementById("adminLoginMsg");
+    document
+      .getElementById("adminLoginMsg");
+
 
   if(!email || !password){
-    msg.innerText = "⚠️ Email ও Password দিন";
+
+    msg.innerText =
+      "⚠️ Email ও Password দিন";
+
     return;
   }
 
-  msg.innerText = "⏳ Login হচ্ছে...";
+
+  msg.innerText =
+    "⏳ Login হচ্ছে...";
+
 
   const {data,error} =
-    await supabaseClient.auth.signInWithPassword({
-      email,
-      password
-    });
+    await supabaseClient.auth
+      .signInWithPassword({
+
+        email,
+        password
+
+      });
+
 
   if(error){
+
     msg.innerText =
-      "❌ Login হয়নি: " + error.message;
+      "❌ Login হয়নি: " +
+      error.message;
+
     return;
   }
+
 
   if(data.user.id !== ADMIN_ID){
 
@@ -487,73 +728,13 @@ async function adminLogin(){
 
     msg.innerText =
       "❌ এটি Admin Account নয়";
+
     return;
   }
+
 
   showAdmin();
-}
 
-
-/* =========================
-   GUEST LOGIN
-========================= */
-
-async function guestLogin(){
-
-  const guestId =
-    document.getElementById("guestId")
-      .value.trim();
-
-  const msg =
-    document.getElementById("guestLoginMsg");
-
-  if(!guestId){
-    msg.innerText = "⚠️ Guest ID লিখুন";
-    return;
-  }
-
-  msg.innerText = "⏳ যাচাই হচ্ছে...";
-
-  let {data:sessionData} =
-    await supabaseClient.auth.getSession();
-
-  if(!sessionData.session){
-
-    const {error} =
-      await supabaseClient.auth.signInAnonymously();
-
-    if(error){
-      msg.innerText =
-        "❌ Guest login সমস্যা: " +
-        error.message;
-      return;
-    }
-  }
-
-  const {data,error} =
-    await supabaseClient.rpc(
-      "login_with_guest_id",
-      {
-        p_access_code: guestId
-      }
-    );
-
-  if(error){
-    msg.innerText =
-      "❌ Login হয়নি: " + error.message;
-    return;
-  }
-
-  if(data !== true){
-    msg.innerText =
-      "❌ Guest ID ভুল অথবা Admin এখনো অনুমোদন করেননি";
-    return;
-  }
-
-  msg.innerText =
-    "✅ Login সফল";
-
-  showGuest();
 }
 
 
@@ -564,77 +745,267 @@ async function guestLogin(){
 async function sendJoinRequest(){
 
   const msg =
-    document.getElementById("joinMsg");
+    document
+      .getElementById("joinMsg");
+
 
   msg.innerText =
-    "⏳ Request পাঠানো হচ্ছে...";
+    "⏳ Join করা হচ্ছে...";
 
-  let {data:sessionData} =
-    await supabaseClient.auth.getSession();
 
-  if(!sessionData.session){
+  /*
+    Visitor-এর জন্য Anonymous
+    account তৈরি হবে।
+  */
+
+  let sessionResult =
+    await supabaseClient.auth
+      .getSession();
+
+
+  if(!sessionResult.data.session){
 
     const {error} =
-      await supabaseClient.auth.signInAnonymously();
+      await supabaseClient.auth
+        .signInAnonymously();
+
 
     if(error){
+
       msg.innerText =
         "❌ Join করা যায়নি: " +
         error.message;
+
       return;
     }
+
   }
 
-  const {data:authData} =
-    await supabaseClient.auth.getUser();
 
-  const user =
-    authData.user;
+  /*
+    আগে দেখে নিই এই visitor-এর
+    কোনো membership আছে কিনা।
+  */
 
-  if(!user){
+  const {data:status,error:statusError} =
+    await supabaseClient.rpc(
+      "get_my_membership_status"
+    );
+
+
+  if(statusError){
+
     msg.innerText =
-      "❌ Anonymous account তৈরি হয়নি";
+      "❌ Status check হয়নি: " +
+      statusError.message;
+
     return;
   }
 
+
+  if(status === "approved"){
+
+    showMember();
+
+    return;
+  }
+
+
+  if(status === "pending"){
+
+    showPending();
+
+    return;
+  }
+
+
   /*
-    একটি ID তৈরি করা হচ্ছে।
-    members.id-তে default না থাকায়
-    এখানে timestamp ব্যবহার করা হয়েছে।
+    নতুন Join Request
   */
 
-  const memberId =
-    Date.now();
+  const {data:userData} =
+    await supabaseClient.auth
+      .getUser();
+
+
+  const user =
+    userData.user;
+
+
+  if(!user){
+
+    msg.innerText =
+      "❌ User পাওয়া যায়নি";
+
+    return;
+  }
+
 
   const {error} =
     await supabaseClient
       .from("members")
       .insert({
-        id: memberId,
-        user_id: user.id,
-        status: "pending"
+
+        id:Date.now(),
+
+        user_id:user.id,
+
+        status:"pending"
+
       });
+
 
   if(error){
 
-    if(
-      error.message &&
-      error.message.toLowerCase().includes("duplicate")
-    ){
-      msg.innerText =
-        "ℹ️ আপনার Join Request আগেই পাঠানো হয়েছে।";
-    }else{
-      msg.innerText =
-        "❌ Request পাঠানো যায়নি: " +
-        error.message;
-    }
+    msg.innerText =
+      "❌ Join Request পাঠানো যায়নি: " +
+      error.message;
 
     return;
   }
 
-  msg.innerHTML =
-    "✅ Join Request পাঠানো হয়েছে!<br>" +
-    "Admin অনুমোদন করলে আপনি Guest ID পাবেন।";
+
+  showPending();
+
+}
+
+
+/* =========================
+   CHECK MY STATUS
+========================= */
+
+async function checkMyStatus(){
+
+  const {data,error} =
+    await supabaseClient.rpc(
+      "get_my_membership_status"
+    );
+
+
+  if(error){
+
+    alert(
+      "❌ Status check হয়নি\n" +
+      error.message
+    );
+
+    return;
+  }
+
+
+  if(data === "approved"){
+
+    showMember();
+
+    return;
+  }
+
+
+  if(data === "pending"){
+
+    showPending();
+
+    return;
+  }
+
+
+  if(data === "rejected"){
+
+    alert(
+      "❌ আপনার Join Request বাতিল করা হয়েছে।"
+    );
+
+    showPublic();
+
+    return;
+  }
+
+
+  showPublic();
+
+}
+
+
+/* =========================
+   SHOW PUBLIC
+========================= */
+
+function showPublic(){
+
+  document
+    .getElementById("publicArea")
+    .classList.remove("hidden");
+
+  document
+    .getElementById("pendingArea")
+    .classList.add("hidden");
+
+  document
+    .getElementById("memberArea")
+    .classList.add("hidden");
+
+  document
+    .getElementById("adminArea")
+    .classList.add("hidden");
+
+}
+
+
+/* =========================
+   SHOW PENDING
+========================= */
+
+function showPending(){
+
+  document
+    .getElementById("publicArea")
+    .classList.add("hidden");
+
+  document
+    .getElementById("memberArea")
+    .classList.add("hidden");
+
+  document
+    .getElementById("adminArea")
+    .classList.add("hidden");
+
+  document
+    .getElementById("pendingArea")
+    .classList.remove("hidden");
+
+}
+
+
+/* =========================
+   SHOW MEMBER
+========================= */
+
+function showMember(){
+
+  document
+    .getElementById("publicArea")
+    .classList.add("hidden");
+
+  document
+    .getElementById("pendingArea")
+    .classList.add("hidden");
+
+  document
+    .getElementById("adminArea")
+    .classList.add("hidden");
+
+  document
+    .getElementById("memberArea")
+    .classList.remove("hidden");
+
+
+  currentFolder = null;
+  folderHistory = [];
+
+
+  loadMemberFolders();
+  loadMemberVideos();
+
 }
 
 
@@ -644,711 +1015,95 @@ async function sendJoinRequest(){
 
 function showAdmin(){
 
-  document.getElementById("loginBox")
+  document
+    .getElementById("publicArea")
     .classList.add("hidden");
 
-  document.getElementById("guestArea")
+  document
+    .getElementById("pendingArea")
     .classList.add("hidden");
 
-  document.getElementById("adminArea")
-    .classList.remove("hidden");
-
-  loadFolders();
-  loadVideos();
-  loadMemberRequests();
-}
-
-
-/* =========================
-   SHOW GUEST
-========================= */
-
-async function showGuest(){
-
-  document.getElementById("loginBox")
+  document
+    .getElementById("memberArea")
     .classList.add("hidden");
 
-  document.getElementById("adminArea")
-    .classList.add("hidden");
-
-  document.getElementById("guestArea")
-    .classList.remove("hidden");
-
-  const {data:userData} =
-    await supabaseClient.auth.getUser();
-
-  if(userData.user){
-    document.getElementById("guestWelcome")
-      .innerText =
-      "👤 Guest হিসেবে আপনি লগইন করেছেন";
-  }
-
-  loadGuestVideos();
-}
-
-
-/* =========================
-   FOLDERS
-========================= */
-
-async function loadFolders(){
-
-  const box =
-    document.getElementById("folders");
-
-  box.innerHTML = "";
-
-  const home =
-    document.createElement("div");
-
-  home.className = "folder";
-
-  if(currentFolder === null){
-    home.classList.add("active");
-  }
-
-  home.innerHTML =
-    "🏠 Home";
-
-  home.onclick = () => {
-    currentFolder = null;
-    folderHistory = [];
-    document.getElementById("folderPath")
-      .innerText = "📁 Home";
-
-    loadFolders();
-    loadVideos();
-  };
-
-  box.appendChild(home);
-
-
-  const {data,error} =
-    await supabaseClient
-      .from("folders")
-      .select("*")
-      .order("id",{ascending:true});
-
-  if(error){
-    box.innerHTML +=
-      "<div>❌ Folder load হয়নি</div>";
-    return;
-  }
-
-  data.forEach(folder => {
-
-    const div =
-      document.createElement("div");
-
-    div.className = "folder";
-
-    if(currentFolder === folder.id){
-      div.classList.add("active");
-    }
-
-    div.innerHTML =
-      "📁 " +
-      escapeHtml(folder.name);
-
-    div.onclick = () => {
-
-      if(currentFolder !== null){
-        folderHistory.push(currentFolder);
-      }
-
-      currentFolder = folder.id;
-
-      document.getElementById("folderPath")
-        .innerText =
-        "📁 " + folder.name;
-
-      loadFolders();
-      loadVideos();
-    };
-
-    box.appendChild(div);
-  });
-}
-
-
-/* =========================
-   CREATE FOLDER
-========================= */
-
-async function createFolder(){
-
-  const name =
-    prompt("নতুন Folder-এর নাম দিন");
-
-  if(!name || !name.trim()){
-    return;
-  }
-
-  const {error} =
-    await supabaseClient
-      .from("folders")
-      .insert({
-        id: Date.now(),
-        name: name.trim()
-      });
-
-  if(error){
-    alert("❌ Folder তৈরি হয়নি\n" + error.message);
-    return;
-  }
-
-  alert("✅ Folder তৈরি হয়েছে");
-
-  loadFolders();
-}
-
-
-/* =========================
-   RENAME FOLDER
-========================= */
-
-async function renameFolder(){
-
-  if(currentFolder === null){
-    alert("⚠️ আগে একটি Folder খুলুন");
-    return;
-  }
-
-  const oldName =
-    document.getElementById("folderPath")
-      .innerText
-      .replace("📁 ","");
-
-  const newName =
-    prompt("নতুন নাম দিন",oldName);
-
-  if(!newName || !newName.trim()){
-    return;
-  }
-
-  const {error} =
-    await supabaseClient
-      .from("folders")
-      .update({
-        name:newName.trim()
-      })
-      .eq("id",currentFolder);
-
-  if(error){
-    alert("❌ Rename হয়নি\n" + error.message);
-    return;
-  }
-
-  document.getElementById("folderPath")
-    .innerText =
-    "📁 " + newName.trim();
-
-  loadFolders();
-}
-
-
-/* =========================
-   DELETE FOLDER
-========================= */
-
-async function deleteFolder(){
-
-  if(currentFolder === null){
-    alert("⚠️ Home Delete করা যাবে না");
-    return;
-  }
-
-  if(!confirm(
-    "এই Folder Delete করবেন?"
-  )){
-    return;
-  }
-
-  const {error} =
-    await supabaseClient
-      .from("folders")
-      .delete()
-      .eq("id",currentFolder);
-
-  if(error){
-    alert(
-      "❌ Folder Delete হয়নি\n" +
-      error.message
-    );
-    return;
-  }
-
-  currentFolder = null;
-  folderHistory = [];
-
-  document.getElementById("folderPath")
-    .innerText = "📁 Home";
-
-  loadFolders();
-  loadVideos();
-}
-
-
-/* =========================
-   BACK
-========================= */
-
-function goBack(){
-
-  if(folderHistory.length > 0){
-
-    currentFolder =
-      folderHistory.pop();
-
-  }else{
-
-    currentFolder = null;
-  }
-
-  loadFolders();
-  loadVideos();
-}
-
-
-/* =========================
-   HOME
-========================= */
-
-function goHome(){
-
-  currentFolder = null;
-  folderHistory = [];
-
-  document.getElementById("folderPath")
-    .innerText = "📁 Home";
-
-  if(!document
+  document
     .getElementById("adminArea")
-    .classList.contains("hidden")){
+    .classList.remove("hidden");
 
-    loadFolders();
-    loadVideos();
-  }
+
+  currentFolder = null;
+  folderHistory = [];
+
+
+  const link =
+    location.origin +
+    location.pathname +
+    "?join=1";
+
+
+  document
+    .getElementById("inviteLink")
+    .value = link;
+
+
+  loadMembers();
+  loadFolders();
+  loadVideos();
+
 }
 
 
 /* =========================
-   UPLOAD MULTIPLE VIDEOS
+   INVITE LINK
 ========================= */
 
-async function uploadVideos(){
+function copyInviteLink(){
 
   const input =
-    document.getElementById("videoFiles");
+    document
+      .getElementById("inviteLink");
 
-  const msg =
-    document.getElementById("uploadMsg");
 
-  const files =
-    Array.from(input.files);
+  navigator.clipboard
+    .writeText(input.value)
+    .then(() => {
 
-  if(files.length === 0){
-    msg.innerText =
-      "⚠️ ভিডিও নির্বাচন করুন";
-    return;
-  }
-
-  msg.innerText =
-    "⏳ " + files.length +
-    "টি ভিডিও আপলোড হচ্ছে...";
-
-  let success = 0;
-
-  for(let i=0;i<files.length;i++){
-
-    const file = files[i];
-
-    msg.innerText =
-      "⏳ ভিডিও " +
-      (i+1) +
-      "/" +
-      files.length +
-      " আপলোড হচ্ছে...";
-
-    const safeName =
-      Date.now() +
-      "_" +
-      i +
-      "_" +
-      file.name.replace(
-        /[^a-zA-Z0-9._-]/g,
-        "_"
+      alert(
+        "✅ Invite Link Copy হয়েছে"
       );
 
-    const filePath =
-      safeName;
+    })
+    .catch(() => {
 
-    const {error:uploadError} =
-      await supabaseClient
-        .storage
-        .from("videos")
-        .upload(
-          filePath,
-          file
-        );
+      input.select();
 
-    if(uploadError){
-      console.log(uploadError);
-      continue;
-    }
+      document
+        .execCommand("copy");
 
-    const {error:dbError} =
-      await supabaseClient
-        .from("videos")
-        .insert({
-          id: Date.now()+i,
-          title:file.name,
-          file_path:filePath,
-          folder_id:currentFolder
-        });
+      alert(
+        "✅ Invite Link Copy হয়েছে"
+      );
 
-    if(dbError){
+    });
 
-      await supabaseClient
-        .storage
-        .from("videos")
-        .remove([filePath]);
-
-      console.log(dbError);
-      continue;
-    }
-
-    success++;
-  }
-
-  input.value = "";
-
-  msg.innerText =
-    "✅ " +
-    success +
-    "টি ভিডিও সফলভাবে পোস্ট হয়েছে";
-
-  loadVideos();
 }
 
 
 /* =========================
-   LOAD VIDEOS
+   MEMBERS
 ========================= */
 
-async function loadVideos(){
+async function loadMembers(){
 
   const box =
-    document.getElementById("videoList");
+    document
+      .getElementById("memberRequests");
+
 
   box.innerHTML =
-    "⏳ ভিডিও লোড হচ্ছে...";
+    "⏳ Members লোড হচ্ছে...";
 
-  let query =
-    supabaseClient
-      .from("videos")
-      .select("*")
-      .order("created_at",{
-        ascending:false
-      });
-
-  if(currentFolder === null){
-
-    query =
-      query.is(
-        "folder_id",
-        null
-      );
-
-  }else{
-
-    query =
-      query.eq(
-        "folder_id",
-        currentFolder
-      );
-  }
-
-  const {data,error} =
-    await query;
-
-  if(error){
-    box.innerHTML =
-      "❌ ভিডিও লোড হয়নি<br>" +
-      error.message;
-    return;
-  }
-
-  if(!data || data.length === 0){
-    box.innerHTML =
-      "<div class='small'>এই Folder-এ কোনো ভিডিও নেই</div>";
-    return;
-  }
-
-  box.innerHTML = "";
-
-  for(let i=0;i<data.length;i++){
-
-    const video =
-      data[i];
-
-    await createVideoCard(
-      video,
-      i+1,
-      box,
-      true
-    );
-  }
-}
-
-
-/* =========================
-   GUEST VIDEOS
-========================= */
-
-async function loadGuestVideos(){
-
-  const box =
-    document.getElementById(
-      "guestVideoList"
-    );
-
-  box.innerHTML =
-    "⏳ ভিডিও লোড হচ্ছে...";
-
-  const {data,error} =
-    await supabaseClient
-      .from("videos")
-      .select("*")
-      .order("created_at",{
-        ascending:false
-      });
-
-  if(error){
-    box.innerHTML =
-      "❌ ভিডিও লোড হয়নি<br>" +
-      error.message;
-    return;
-  }
-
-  if(!data || data.length === 0){
-    box.innerHTML =
-      "<div class='small'>কোনো ভিডিও নেই</div>";
-    return;
-  }
-
-  box.innerHTML = "";
-
-  for(let i=0;i<data.length;i++){
-
-    await createVideoCard(
-      data[i],
-      i+1,
-      box,
-      false
-    );
-  }
-}
-
-
-/* =========================
-   VIDEO CARD
-========================= */
-
-async function createVideoCard(
-  video,
-  number,
-  box,
-  adminMode
-){
-
-  const {data,error} =
-    await supabaseClient
-      .storage
-      .from("videos")
-      .createSignedUrl(
-        video.file_path,
-        3600
-      );
-
-  if(error || !data){
-    return;
-  }
-
-  const card =
-    document.createElement("div");
-
-  card.className =
-    "video-card";
-
-  card.innerHTML = `
-    <video
-      controls
-      preload="metadata"
-      src="${data.signedUrl}">
-    </video>
-
-    <div class="video-title">
-      <span class="video-number">
-        ${number}.
-      </span>
-      ${escapeHtml(video.title || "Video")}
-    </div>
-
-    <div class="actions">
-
-      <button
-        class="blue"
-        onclick="openVideo('${data.signedUrl}')">
-        ▶️ Open
-      </button>
-
-      <button
-        class="green"
-        onclick="downloadVideo('${data.signedUrl}','${escapeJs(video.title || "video")}')">
-        ⬇️ Download
-      </button>
-
-      ${
-        adminMode
-        ?
-        `<button
-          class="red"
-          onclick="deleteVideo(${video.id},'${escapeJs(video.file_path)}')">
-          🗑️ Delete
-        </button>`
-        :
-        ""
-      }
-
-    </div>
-  `;
-
-  box.appendChild(card);
-}
-
-
-/* =========================
-   OPEN VIDEO
-========================= */
-
-function openVideo(url){
-
-  window.open(
-    url,
-    "_blank"
-  );
-}
-
-
-/* =========================
-   DOWNLOAD
-========================= */
-
-async function downloadVideo(
-  url,
-  filename
-){
-
-  try{
-
-    const response =
-      await fetch(url);
-
-    const blob =
-      await response.blob();
-
-    const blobUrl =
-      URL.createObjectURL(blob);
-
-    const a =
-      document.createElement("a");
-
-    a.href = blobUrl;
-    a.download = filename;
-
-    document.body.appendChild(a);
-
-    a.click();
-
-    a.remove();
-
-    URL.revokeObjectURL(blobUrl);
-
-  }catch(error){
-
-    window.open(
-      url,
-      "_blank"
-    );
-  }
-}
-
-
-/* =========================
-   DELETE VIDEO
-========================= */
-
-async function deleteVideo(
-  id,
-  filePath
-){
-
-  if(!confirm(
-    "এই ভিডিও Delete করবেন?"
-  )){
-    return;
-  }
-
-  const {error:storageError} =
-    await supabaseClient
-      .storage
-      .from("videos")
-      .remove([
-        filePath
-      ]);
-
-  if(storageError){
-    alert(
-      "❌ Video file delete হয়নি\n" +
-      storageError.message
-    );
-    return;
-  }
-
-  const {error:dbError} =
-    await supabaseClient
-      .from("videos")
-      .delete()
-      .eq("id",id);
-
-  if(dbError){
-    alert(
-      "❌ Database থেকে delete হয়নি\n" +
-      dbError.message
-    );
-    return;
-  }
-
-  alert("✅ ভিডিও Delete হয়েছে");
-
-  loadVideos();
-}
-
-
-/* =========================
-   MEMBER REQUESTS
-========================= */
-
-async function loadMemberRequests(){
-
-  const box =
-    document.getElementById(
-      "memberRequests"
-    );
-
-  box.innerHTML =
-    "⏳ Requests লোড হচ্ছে...";
 
   const {data,error} =
     await supabaseClient
@@ -1358,52 +1113,76 @@ async function loadMemberRequests(){
         ascending:false
       });
 
+
   if(error){
 
     box.innerHTML =
-      "❌ Requests load হয়নি<br>" +
+      "❌ Members load হয়নি<br>" +
       error.message;
 
     return;
   }
 
+
   if(!data || data.length === 0){
 
     box.innerHTML =
-      "<div class='small'>কোনো Member Request নেই</div>";
+      "<div class='small'>" +
+      "এখনো কোনো Member নেই" +
+      "</div>";
 
     return;
   }
 
+
   box.innerHTML = "";
+
 
   data.forEach(member => {
 
     const div =
       document.createElement("div");
 
-    div.className = "box";
 
-    let statusText =
-      member.status === "approved"
-      ? "✅ Approved"
-      : member.status === "rejected"
-      ? "❌ Rejected"
-      : "⏳ Pending";
+    div.className =
+      "box";
+
+
+    let statusText = "";
+
+
+    if(member.status === "approved"){
+
+      statusText =
+        "✅ Approved";
+
+    }else if(member.status === "pending"){
+
+      statusText =
+        "⏳ Pending";
+
+    }else{
+
+      statusText =
+        "❌ Removed";
+
+    }
+
 
     div.innerHTML = `
+
       <div>
         <b>${statusText}</b>
       </div>
 
       <div class="small">
-        Guest ID:
-        ${escapeHtml(member.access_code || "এখনো দেওয়া হয়নি")}
+        Member ID
       </div>
 
-      <div class="small">
-        User:
-        ${escapeHtml(member.user_id || "")}
+      <div class="member-id">
+        ${escapeHtml(
+          member.user_id || ""
+        )}
       </div>
 
       <div class="actions">
@@ -1445,33 +1224,30 @@ async function loadMemberRequests(){
       </div>
     `;
 
+
     box.appendChild(div);
+
   });
+
 }
 
 
 /* =========================
-   APPROVE MEMBER
+   APPROVE
 ========================= */
 
 async function approveMember(id){
-
-  const guestId =
-    "VP-" +
-    Math.floor(
-      100000 +
-      Math.random()*900000
-    );
 
   const {error} =
     await supabaseClient
       .from("members")
       .update({
-        status:"approved",
-        guest_id:guestId,
-        access_code:guestId
+
+        status:"approved"
+
       })
       .eq("id",id);
+
 
   if(error){
 
@@ -1483,13 +1259,14 @@ async function approveMember(id){
     return;
   }
 
+
   alert(
-    "✅ Member Approved\n\n" +
-    "Guest ID: " +
-    guestId
+    "✅ Member Approved"
   );
 
-  loadMemberRequests();
+
+  loadMembers();
+
 }
 
 
@@ -1502,16 +1279,21 @@ async function rejectMember(id){
   if(!confirm(
     "এই Join Request Reject করবেন?"
   )){
+
     return;
   }
+
 
   const {error} =
     await supabaseClient
       .from("members")
       .update({
+
         status:"rejected"
+
       })
       .eq("id",id);
+
 
   if(error){
 
@@ -1523,7 +1305,9 @@ async function rejectMember(id){
     return;
   }
 
-  loadMemberRequests();
+
+  loadMembers();
+
 }
 
 
@@ -1536,14 +1320,26 @@ async function removeMember(id){
   if(!confirm(
     "এই Member-কে Remove করবেন?"
   )){
+
     return;
   }
+
+
+  /*
+    Delete না করে rejected করা হচ্ছে।
+    এতে Member-এর access সঙ্গে সঙ্গে বন্ধ হবে।
+  */
 
   const {error} =
     await supabaseClient
       .from("members")
-      .delete()
+      .update({
+
+        status:"rejected"
+
+      })
       .eq("id",id);
+
 
   if(error){
 
@@ -1555,9 +1351,1149 @@ async function removeMember(id){
     return;
   }
 
-  alert("✅ Member Remove হয়েছে");
 
-  loadMemberRequests();
+  alert(
+    "✅ Member Remove হয়েছে"
+  );
+
+
+  loadMembers();
+
+}
+
+
+/* =========================
+   FOLDERS
+========================= */
+
+async function loadFolders(){
+
+  const box =
+    document
+      .getElementById("folders");
+
+
+  box.innerHTML = "";
+
+
+  const home =
+    document.createElement("div");
+
+
+  home.className =
+    "folder";
+
+
+  if(currentFolder === null){
+
+    home.classList.add("active");
+
+  }
+
+
+  home.innerHTML =
+    "🏠 Home";
+
+
+  home.onclick = () => {
+
+    currentFolder = null;
+
+    folderHistory = [];
+
+
+    document
+      .getElementById("folderPath")
+      .innerText =
+      "📁 Home";
+
+
+    loadFolders();
+    loadVideos();
+
+  };
+
+
+  box.appendChild(home);
+
+
+  const {data,error} =
+    await supabaseClient
+      .from("folders")
+      .select("*")
+      .order("id",{
+        ascending:true
+      });
+
+
+  if(error){
+
+    box.innerHTML +=
+      "<div>❌ Folder load হয়নি</div>";
+
+    return;
+  }
+
+
+  data.forEach(folder => {
+
+    const div =
+      document.createElement("div");
+
+
+    div.className =
+      "folder";
+
+
+    if(currentFolder === folder.id){
+
+      div.classList.add("active");
+
+    }
+
+
+    div.innerHTML =
+      "📁 " +
+      escapeHtml(folder.name);
+
+
+    div.onclick = () => {
+
+      if(currentFolder !== null){
+
+        folderHistory.push(
+          currentFolder
+        );
+
+      }
+
+
+      currentFolder =
+        folder.id;
+
+
+      document
+        .getElementById("folderPath")
+        .innerText =
+        "📁 " + folder.name;
+
+
+      loadFolders();
+      loadVideos();
+
+    };
+
+
+    box.appendChild(div);
+
+  });
+
+}
+
+
+/* =========================
+   MEMBER FOLDERS
+========================= */
+
+async function loadMemberFolders(){
+
+  const box =
+    document
+      .getElementById(
+        "memberFolders"
+      );
+
+
+  box.innerHTML = "";
+
+
+  const home =
+    document.createElement("div");
+
+
+  home.className =
+    "folder";
+
+
+  if(currentFolder === null){
+
+    home.classList.add("active");
+
+  }
+
+
+  home.innerHTML =
+    "🏠 Home";
+
+
+  home.onclick = () => {
+
+    currentFolder = null;
+
+    folderHistory = [];
+
+
+    document
+      .getElementById(
+        "memberFolderPath"
+      )
+      .innerText =
+      "📁 Home";
+
+
+    loadMemberFolders();
+    loadMemberVideos();
+
+  };
+
+
+  box.appendChild(home);
+
+
+  const {data,error} =
+    await supabaseClient
+      .from("folders")
+      .select("*")
+      .order("id",{
+        ascending:true
+      });
+
+
+  if(error){
+
+    box.innerHTML +=
+      "<div>❌ Folder load হয়নি</div>";
+
+    return;
+  }
+
+
+  data.forEach(folder => {
+
+    const div =
+      document.createElement("div");
+
+
+    div.className =
+      "folder";
+
+
+    if(currentFolder === folder.id){
+
+      div.classList.add("active");
+
+    }
+
+
+    div.innerHTML =
+      "📁 " +
+      escapeHtml(folder.name);
+
+
+    div.onclick = () => {
+
+      if(currentFolder !== null){
+
+        folderHistory.push(
+          currentFolder
+        );
+
+      }
+
+
+      currentFolder =
+        folder.id;
+
+
+      document
+        .getElementById(
+          "memberFolderPath"
+        )
+        .innerText =
+        "📁 " + folder.name;
+
+
+      loadMemberFolders();
+      loadMemberVideos();
+
+    };
+
+
+    box.appendChild(div);
+
+  });
+
+}
+
+
+/* =========================
+   CREATE FOLDER
+========================= */
+
+async function createFolder(){
+
+  const name =
+    prompt(
+      "নতুন Folder-এর নাম দিন"
+    );
+
+
+  if(!name || !name.trim()){
+
+    return;
+
+  }
+
+
+  const {error} =
+    await supabaseClient
+      .from("folders")
+      .insert({
+
+        id:Date.now(),
+
+        name:name.trim()
+
+      });
+
+
+  if(error){
+
+    alert(
+      "❌ Folder তৈরি হয়নি\n" +
+      error.message
+    );
+
+    return;
+  }
+
+
+  alert(
+    "✅ Folder তৈরি হয়েছে"
+  );
+
+
+  loadFolders();
+
+}
+
+
+/* =========================
+   RENAME FOLDER
+========================= */
+
+async function renameFolder(){
+
+  if(currentFolder === null){
+
+    alert(
+      "⚠️ আগে একটি Folder খুলুন"
+    );
+
+    return;
+  }
+
+
+  const oldName =
+    document
+      .getElementById("folderPath")
+      .innerText
+      .replace("📁 ","");
+
+
+  const newName =
+    prompt(
+      "নতুন নাম দিন",
+      oldName
+    );
+
+
+  if(!newName || !newName.trim()){
+
+    return;
+
+  }
+
+
+  const {error} =
+    await supabaseClient
+      .from("folders")
+      .update({
+
+        name:newName.trim()
+
+      })
+      .eq(
+        "id",
+        currentFolder
+      );
+
+
+  if(error){
+
+    alert(
+      "❌ Rename হয়নি\n" +
+      error.message
+    );
+
+    return;
+  }
+
+
+  document
+    .getElementById("folderPath")
+    .innerText =
+    "📁 " + newName.trim();
+
+
+  loadFolders();
+
+}
+
+
+/* =========================
+   DELETE FOLDER
+========================= */
+
+async function deleteFolder(){
+
+  if(currentFolder === null){
+
+    alert(
+      "⚠️ Home Delete করা যাবে না"
+    );
+
+    return;
+  }
+
+
+  if(!confirm(
+    "এই Folder Delete করবেন?"
+  )){
+
+    return;
+  }
+
+
+  const {error} =
+    await supabaseClient
+      .from("folders")
+      .delete()
+      .eq(
+        "id",
+        currentFolder
+      );
+
+
+  if(error){
+
+    alert(
+      "❌ Folder Delete হয়নি\n" +
+      error.message
+    );
+
+    return;
+  }
+
+
+  currentFolder = null;
+
+  folderHistory = [];
+
+
+  document
+    .getElementById("folderPath")
+    .innerText =
+    "📁 Home";
+
+
+  loadFolders();
+  loadVideos();
+
+}
+
+
+/* =========================
+   BACK
+========================= */
+
+function goBack(){
+
+  if(folderHistory.length > 0){
+
+    currentFolder =
+      folderHistory.pop();
+
+  }else{
+
+    currentFolder =
+      null;
+
+  }
+
+
+  if(
+    !document
+      .getElementById("memberArea")
+      .classList
+      .contains("hidden")
+  ){
+
+    loadMemberFolders();
+    loadMemberVideos();
+
+  }else{
+
+    loadFolders();
+    loadVideos();
+
+  }
+
+}
+
+
+/* =========================
+   HOME
+========================= */
+
+function goHome(){
+
+  currentFolder = null;
+
+  folderHistory = [];
+
+
+  if(
+    !document
+      .getElementById("memberArea")
+      .classList
+      .contains("hidden")
+  ){
+
+    document
+      .getElementById(
+        "memberFolderPath"
+      )
+      .innerText =
+      "📁 Home";
+
+
+    loadMemberFolders();
+    loadMemberVideos();
+
+  }else{
+
+    document
+      .getElementById(
+        "folderPath"
+      )
+      .innerText =
+      "📁 Home";
+
+
+    loadFolders();
+    loadVideos();
+
+  }
+
+}
+
+
+/* =========================
+   UPLOAD MULTIPLE VIDEOS
+========================= */
+
+async function uploadVideos(){
+
+  const input =
+    document
+      .getElementById(
+        "videoFiles"
+      );
+
+
+  const msg =
+    document
+      .getElementById(
+        "uploadMsg"
+      );
+
+
+  const files =
+    Array.from(
+      input.files
+    );
+
+
+  if(files.length === 0){
+
+    msg.innerText =
+      "⚠️ ভিডিও নির্বাচন করুন";
+
+    return;
+
+  }
+
+
+  msg.innerText =
+    "⏳ " +
+    files.length +
+    "টি ভিডিও আপলোড হচ্ছে...";
+
+
+  let success = 0;
+
+
+  for(
+    let i=0;
+    i<files.length;
+    i++
+  ){
+
+    const file =
+      files[i];
+
+
+    msg.innerText =
+      "⏳ ভিডিও " +
+      (i+1) +
+      "/" +
+      files.length +
+      " আপলোড হচ্ছে...";
+
+
+    const safeName =
+      Date.now() +
+      "_" +
+      i +
+      "_" +
+      file.name.replace(
+        /[^a-zA-Z0-9._-]/g,
+        "_"
+      );
+
+
+    const {error:uploadError} =
+      await supabaseClient
+        .storage
+        .from("videos")
+        .upload(
+          safeName,
+          file
+        );
+
+
+    if(uploadError){
+
+      console.log(
+        uploadError
+      );
+
+      continue;
+
+    }
+
+
+    const {error:dbError} =
+      await supabaseClient
+        .from("videos")
+        .insert({
+
+          id:
+            Date.now()+i,
+
+          title:
+            file.name,
+
+          file_path:
+            safeName,
+
+          folder_id:
+            currentFolder
+
+        });
+
+
+    if(dbError){
+
+      await supabaseClient
+        .storage
+        .from("videos")
+        .remove([
+          safeName
+        ]);
+
+
+      console.log(
+        dbError
+      );
+
+      continue;
+
+    }
+
+
+    success++;
+
+  }
+
+
+  input.value = "";
+
+
+  msg.innerText =
+    "✅ " +
+    success +
+    "টি ভিডিও সফলভাবে পোস্ট হয়েছে";
+
+
+  loadVideos();
+
+}
+
+
+/* =========================
+   LOAD ADMIN VIDEOS
+========================= */
+
+async function loadVideos(){
+
+  const box =
+    document
+      .getElementById(
+        "videoList"
+      );
+
+
+  box.innerHTML =
+    "⏳ ভিডিও লোড হচ্ছে...";
+
+
+  let query =
+    supabaseClient
+      .from("videos")
+      .select("*")
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
+
+
+  if(currentFolder === null){
+
+    query =
+      query.is(
+        "folder_id",
+        null
+      );
+
+  }else{
+
+    query =
+      query.eq(
+        "folder_id",
+        currentFolder
+      );
+
+  }
+
+
+  const {data,error} =
+    await query;
+
+
+  if(error){
+
+    box.innerHTML =
+      "❌ ভিডিও লোড হয়নি<br>" +
+      error.message;
+
+    return;
+  }
+
+
+  if(
+    !data ||
+    data.length === 0
+  ){
+
+    box.innerHTML =
+      "<div class='small'>" +
+      "এই Folder-এ কোনো ভিডিও নেই" +
+      "</div>";
+
+    return;
+  }
+
+
+  box.innerHTML = "";
+
+
+  for(
+    let i=0;
+    i<data.length;
+    i++
+  ){
+
+    await createVideoCard(
+      data[i],
+      i+1,
+      box,
+      true
+    );
+
+  }
+
+}
+
+
+/* =========================
+   LOAD MEMBER VIDEOS
+========================= */
+
+async function loadMemberVideos(){
+
+  const box =
+    document
+      .getElementById(
+        "memberVideoList"
+      );
+
+
+  box.innerHTML =
+    "⏳ ভিডিও লোড হচ্ছে...";
+
+
+  let query =
+    supabaseClient
+      .from("videos")
+      .select("*")
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
+
+
+  if(currentFolder === null){
+
+    query =
+      query.is(
+        "folder_id",
+        null
+      );
+
+  }else{
+
+    query =
+      query.eq(
+        "folder_id",
+        currentFolder
+      );
+
+  }
+
+
+  const {data,error} =
+    await query;
+
+
+  if(error){
+
+    box.innerHTML =
+      "❌ ভিডিও লোড হয়নি<br>" +
+      error.message;
+
+    return;
+  }
+
+
+  if(
+    !data ||
+    data.length === 0
+  ){
+
+    box.innerHTML =
+      "<div class='small'>" +
+      "এই Folder-এ কোনো ভিডিও নেই" +
+      "</div>";
+
+    return;
+  }
+
+
+  box.innerHTML = "";
+
+
+  for(
+    let i=0;
+    i<data.length;
+    i++
+  ){
+
+    await createVideoCard(
+      data[i],
+      i+1,
+      box,
+      false
+    );
+
+  }
+
+}
+
+
+/* =========================
+   VIDEO CARD
+========================= */
+
+async function createVideoCard(
+  video,
+  number,
+  box,
+  adminMode
+){
+
+  const {data,error} =
+    await supabaseClient
+      .storage
+      .from("videos")
+      .createSignedUrl(
+        video.file_path,
+        3600
+      );
+
+
+  if(error || !data){
+
+    return;
+
+  }
+
+
+  const card =
+    document.createElement("div");
+
+
+  card.className =
+    "video-card";
+
+
+  card.innerHTML = `
+
+    <video
+      controls
+      preload="metadata"
+      src="${data.signedUrl}">
+    </video>
+
+    <div class="video-title">
+
+      <span class="video-number">
+        ${number}.
+      </span>
+
+      ${escapeHtml(
+        video.title ||
+        "Video"
+      )}
+
+    </div>
+
+    <div class="actions">
+
+      <button
+        class="blue"
+        onclick="openVideo('${data.signedUrl}')">
+        ▶️ Open
+      </button>
+
+      <button
+        class="green"
+        onclick="downloadVideo(
+          '${data.signedUrl}',
+          '${escapeJs(
+            video.title ||
+            "video"
+          )}'
+        )">
+        ⬇️ Download
+      </button>
+
+      ${
+        adminMode
+        ?
+        `
+        <button
+          class="red"
+          onclick="deleteVideo(
+            ${video.id},
+            '${escapeJs(
+              video.file_path
+            )}'
+          )">
+          🗑️ Delete
+        </button>
+        `
+        :
+        ""
+      }
+
+    </div>
+  `;
+
+
+  box.appendChild(card);
+
+}
+
+
+/* =========================
+   OPEN VIDEO
+========================= */
+
+function openVideo(url){
+
+  window.open(
+    url,
+    "_blank"
+  );
+
+}
+
+
+/* =========================
+   DOWNLOAD
+========================= */
+
+async function downloadVideo(
+  url,
+  filename
+){
+
+  try{
+
+    const response =
+      await fetch(url);
+
+
+    const blob =
+      await response.blob();
+
+
+    const blobUrl =
+      URL.createObjectURL(
+        blob
+      );
+
+
+    const a =
+      document.createElement("a");
+
+
+    a.href =
+      blobUrl;
+
+
+    a.download =
+      filename;
+
+
+    document.body.appendChild(a);
+
+
+    a.click();
+
+
+    a.remove();
+
+
+    URL.revokeObjectURL(
+      blobUrl
+    );
+
+
+  }catch(error){
+
+    window.open(
+      url,
+      "_blank"
+    );
+
+  }
+
+}
+
+
+/* =========================
+   DELETE VIDEO
+========================= */
+
+async function deleteVideo(
+  id,
+  filePath
+){
+
+  if(!confirm(
+    "এই ভিডিও Delete করবেন?"
+  )){
+
+    return;
+
+  }
+
+
+  const {error:storageError} =
+    await supabaseClient
+      .storage
+      .from("videos")
+      .remove([
+        filePath
+      ]);
+
+
+  if(storageError){
+
+    alert(
+      "❌ Video file delete হয়নি\n" +
+      storageError.message
+    );
+
+    return;
+  }
+
+
+  const {error:dbError} =
+    await supabaseClient
+      .from("videos")
+      .delete()
+      .eq(
+        "id",
+        id
+      );
+
+
+  if(dbError){
+
+    alert(
+      "❌ Database থেকে delete হয়নি\n" +
+      dbError.message
+    );
+
+    return;
+  }
+
+
+  alert(
+    "✅ ভিডিও Delete হয়েছে"
+  );
+
+
+  loadVideos();
+
 }
 
 
@@ -1569,7 +2505,10 @@ async function logout(){
 
   await supabaseClient.auth.signOut();
 
-  location.reload();
+  location.href =
+    location.pathname +
+    "?join=1";
+
 }
 
 
@@ -1580,19 +2519,54 @@ async function logout(){
 function escapeHtml(text){
 
   return String(text)
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+
+    .replace(
+      /</g,
+      "&lt;"
+    )
+
+    .replace(
+      />/g,
+      "&gt;"
+    )
+
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+
+    .replace(
+      /'/g,
+      "&#039;"
+    );
+
 }
+
 
 function escapeJs(text){
 
   return String(text)
-    .replace(/\\/g,"\\\\")
-    .replace(/'/g,"\\'")
-    .replace(/"/g,"&quot;");
+
+    .replace(
+      /\\/g,
+      "\\\\"
+    )
+
+    .replace(
+      /'/g,
+      "\\'"
+    )
+
+    .replace(
+      /"/g,
+      "&quot;"
+    );
+
 }
 
 
@@ -1605,39 +2579,94 @@ window.addEventListener(
   async () => {
 
     const {data} =
-      await supabaseClient.auth.getSession();
+      await supabaseClient.auth
+        .getSession();
 
-    if(!data.session){
-      showLogin("admin");
-      return;
-    }
 
-    const user =
-      data.session.user;
+    /*
+      Admin session
+    */
 
-    if(user.id === ADMIN_ID){
+    if(
+      data.session &&
+      data.session.user.id === ADMIN_ID
+    ){
 
       showAdmin();
 
       return;
+
     }
+
 
     /*
-      Anonymous session থাকলে সরাসরি Guest screen
-      দেখানো হবে।
-      Guest ID দিয়ে ঢোকার সময় RPC approval যাচাই করে।
+      Anonymous Member session
     */
 
-    if(user.is_anonymous){
+    if(
+      data.session &&
+      data.session.user.is_anonymous
+    ){
 
-      showGuest();
+      const {data:status} =
+        await supabaseClient.rpc(
+          "get_my_membership_status"
+        );
 
-      return;
+
+      if(status === "approved"){
+
+        showMember();
+
+        return;
+
+      }
+
+
+      if(status === "pending"){
+
+        showPending();
+
+        return;
+
+      }
+
+
+      if(status === "rejected"){
+
+        await supabaseClient.auth.signOut();
+
+        showPublic();
+
+        showLogin("join");
+
+        return;
+
+      }
+
     }
 
-    await supabaseClient.auth.signOut();
 
-    showLogin("admin");
+    /*
+      Invite Link খুললে Join screen
+    */
+
+    showPublic();
+
+
+    if(
+      location.search
+        .includes("join=1")
+    ){
+
+      showLogin("join");
+
+    }else{
+
+      showLogin("admin");
+
+    }
+
   }
 );
 
