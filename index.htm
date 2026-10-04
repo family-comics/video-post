@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="bn">
+<!DOCTYPE html><html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-<title>Video Post</title>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<style>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Video Post</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><style>
 *{box-sizing:border-box}
 
 body{
@@ -22,7 +15,7 @@ header{
   background:#111;
   color:#fff;
   text-align:center;
-  padding:13px 8px;
+  padding:12px 8px;
   position:sticky;
   top:0;
   z-index:10;
@@ -30,12 +23,12 @@ header{
 
 header h1{
   margin:0;
-  font-size:23px;
+  font-size:22px;
 }
 
 header p{
-  margin:4px 0 0;
-  font-size:13px;
+  margin:3px 0 0;
+  font-size:12px;
   color:#ccc;
 }
 
@@ -43,37 +36,44 @@ header p{
   width:100%;
   max-width:700px;
   margin:auto;
-  padding:8px;
+  padding:7px;
 }
 
 .box{
   background:#fff;
-  border-radius:10px;
-  padding:11px;
-  margin-bottom:9px;
-  box-shadow:0 1px 5px #ddd;
+  border-radius:9px;
+  padding:9px;
+  margin-bottom:8px;
+  box-shadow:0 1px 4px #ddd;
 }
 
 h2{
-  font-size:17px;
-  margin:0 0 9px;
+  font-size:16px;
+  margin:0 0 7px;
 }
 
+/* ছোট ইনপুট / SELECT */
 input,
-select,
-button{
+select{
   width:100%;
-  padding:10px;
-  margin:4px 0;
-  border-radius:7px;
+  padding:8px 9px;
+  margin:3px 0;
+  border-radius:6px;
   border:1px solid #ccc;
-  font-size:14px;
+  font-size:13px;
+  background:#fff;
 }
 
+/* সাধারণ ছোট বাটন */
 button{
+  width:auto;
+  padding:7px 11px;
+  margin:3px 2px 3px 0;
+  border-radius:6px;
+  border:0;
+  font-size:12px;
   background:#111;
   color:#fff;
-  border:0;
   cursor:pointer;
 }
 
@@ -87,26 +87,52 @@ button:disabled{
 
 .message{
   text-align:center;
-  padding:6px;
-  font-size:13px;
+  padding:4px;
+  font-size:12px;
 }
 
+/* LOGIN */
+#loginBox{
+  max-width:330px;
+  margin:14px auto;
+}
+
+#loginBox input{
+  padding:8px;
+}
+
+#loginBox button{
+  width:100%;
+  margin-top:4px;
+}
+
+/* ADMIN PANEL */
+.admin-actions{
+  display:flex;
+  gap:5px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+/* HIDDEN */
 .hidden{
   display:none!important;
 }
 
+/* FOLDERS */
 .folder-list{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:6px;
+  gap:5px;
+  margin-bottom:5px;
 }
 
 .folder{
   background:#eee;
-  padding:9px 4px;
-  border-radius:8px;
+  padding:7px 3px;
+  border-radius:7px;
   text-align:center;
-  font-size:12px;
+  font-size:11px;
   cursor:pointer;
   overflow:hidden;
   word-break:break-word;
@@ -117,16 +143,66 @@ button:disabled{
   color:#fff;
 }
 
+/* FOLDER CONTROLS */
+.folder-controls{
+  display:flex;
+  gap:5px;
+  align-items:center;
+}
+
+.folder-controls input{
+  flex:1;
+  margin:0;
+}
+
+.folder-controls button{
+  flex-shrink:0;
+  margin:0;
+}
+
+.folder-delete-btn{
+  background:#d00000;
+}
+
+/* VIDEO POST */
+.video-controls{
+  display:flex;
+  gap:5px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+.video-controls select{
+  flex:1;
+  min-width:120px;
+  margin:0;
+}
+
+.file-input{
+  width:100%;
+  padding:6px;
+  font-size:12px;
+  margin:4px 0;
+  border:1px solid #ccc;
+  border-radius:6px;
+  background:#fafafa;
+}
+
+.post-btn{
+  background:#111;
+}
+
+/* VIDEO LIST */
 .video-list{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:8px;
+  gap:7px;
 }
 
 .video-card{
   background:#fafafa;
   border:1px solid #ddd;
-  border-radius:9px;
+  border-radius:8px;
   overflow:hidden;
 }
 
@@ -138,26 +214,26 @@ button:disabled{
 }
 
 .video-info{
-  padding:7px;
+  padding:6px;
 }
 
 .video-title{
   font-weight:bold;
-  font-size:13px;
-  margin-bottom:4px;
+  font-size:12px;
+  margin-bottom:3px;
   word-break:break-word;
 }
 
 .video-folder{
   color:#777;
-  font-size:11px;
-  margin-bottom:4px;
+  font-size:10px;
+  margin-bottom:3px;
 }
 
 .small-btn{
-  padding:7px;
-  font-size:11px;
-  margin:2px 0;
+  padding:6px 8px;
+  font-size:10px;
+  margin:2px 1px;
 }
 
 .download{
@@ -173,27 +249,44 @@ button:disabled{
   text-align:center;
   color:#777;
   padding:18px 5px;
+  font-size:12px;
 }
 
 .file-name{
-  font-size:12px;
+  font-size:11px;
   color:#555;
-  margin:5px 0;
+  margin:3px 0;
+  word-break:break-word;
+}
+
+.error-text{
+  font-size:10px;
+  color:#d00000;
+  padding:4px 0;
   word-break:break-word;
 }
 
 @media(max-width:420px){
 
   header h1{
-    font-size:21px;
+    font-size:20px;
   }
 
   .container{
-    padding:6px;
+    padding:5px;
+  }
+
+  .box{
+    padding:8px;
+    margin-bottom:7px;
+  }
+
+  h2{
+    font-size:15px;
   }
 
   .video-list{
-    gap:6px;
+    gap:5px;
   }
 
   .video-card video{
@@ -201,158 +294,130 @@ button:disabled{
   }
 
   .folder-list{
-    gap:5px;
+    gap:4px;
   }
 
   .folder{
+    font-size:10px;
+    padding:7px 2px;
+  }
+
+  button{
+    padding:6px 9px;
     font-size:11px;
-    padding:8px 3px;
+  }
+
+  .video-controls select{
+    font-size:12px;
   }
 }
-</style>
-</head>
-
-<body>
-
-<header>
+</style></head><body><header>
   <h1>🎬 Video Post</h1>
   <p>ভিডিও শেয়ার করার সহজ জায়গা</p>
-</header>
+</header><div class="container"><!-- LOGIN --><div id="loginBox" class="box">  <h2>🔐 Admin Login</h2><input
+id="email"
+type="email"
+placeholder="Admin Email"
 
-<div class="container">
+«»
 
-<!-- LOGIN -->
-<div id="loginBox" class="box">
+<input
+id="password"
+type="password"
+placeholder="Password"
 
-  <h2>🔐 Admin Login</h2>
-
-  <input
-    id="email"
-    type="email"
-    placeholder="Admin Email"
-  >
-
-  <input
-    id="password"
-    type="password"
-    placeholder="Password"
-  >
+«»
 
   <button onclick="login()">
     🔐 Login
+  </button>  <div id="loginMessage" class="message"></div></div><!-- ADMIN --><div id="adminArea" class="hidden">  <!-- ADMIN PANEL -->  <div class="box"><h2>👤 Admin Panel</h2>
+
+<div
+  id="adminEmail"
+  style="font-size:11px;color:#777;margin-bottom:3px">
+</div>
+
+<div class="admin-actions">
+  <button class="logout" onclick="logout()">
+    🚪 Logout
+  </button>
+</div>
+
+  </div>  <!-- FOLDERS -->  <div class="box"><h2>📁 Folders</h2>
+
+<div
+  id="folderList"
+  class="folder-list">
+</div>
+
+<div class="folder-controls">
+
+  <input
+    id="folderName"
+    type="text"
+    placeholder="নতুন Folder-এর নাম"
+  >
+
+  <button onclick="createFolder()">
+    📁 তৈরি
   </button>
 
-  <div id="loginMessage" class="message"></div>
+</div>
+
+<button
+  class="folder-delete-btn"
+  onclick="deleteSelectedFolder()">
+  🗑️ Delete
+</button>
+
+<div
+  id="folderMessage"
+  class="message">
+</div>
+
+  </div>  <!-- VIDEO POST -->  <div class="box"><h2>📤 Video Post</h2>
+
+<div class="video-controls">
+
+  <select id="videoFolder">
+    <option value="">📁 Home</option>
+  </select>
 
 </div>
 
+<input
+  id="videoFile"
+  class="file-input"
+  type="file"
+  accept="video/*"
+  onchange="showFileName()"
+>
 
-<!-- ADMIN -->
-<div id="adminArea" class="hidden">
-
-  <div class="box">
-
-    <h2>👤 Admin Panel</h2>
-
-    <div
-      id="adminEmail"
-      style="font-size:12px;color:#777;margin-bottom:5px">
-    </div>
-
-    <button class="logout" onclick="logout()">
-      🚪 Logout
-    </button>
-
-  </div>
-
-
-  <!-- FOLDERS -->
-  <div class="box">
-
-    <h2>📁 Folders</h2>
-
-    <div
-      id="folderList"
-      class="folder-list">
-    </div>
-
-    <input
-      id="folderName"
-      type="text"
-      placeholder="নতুন Folder-এর নাম"
-    >
-
-    <button onclick="createFolder()">
-      📁 Folder তৈরি
-    </button>
-
-    <button
-      class="delete"
-      onclick="deleteSelectedFolder()">
-      🗑️ Selected Folder Delete
-    </button>
-
-    <div
-      id="folderMessage"
-      class="message">
-    </div>
-
-  </div>
-
-
-  <!-- VIDEO POST -->
-  <div class="box">
-
-    <h2>📤 Video Post</h2>
-
-    <select id="videoFolder">
-      <option value="">📁 Home</option>
-    </select>
-
-    <input
-      id="videoFile"
-      type="file"
-      accept="video/*"
-      onchange="showFileName()"
-    >
-
-    <div
-      id="selectedFileName"
-      class="file-name">
-    </div>
-
-    <button
-      id="uploadBtn"
-      onclick="uploadVideo()">
-      📤 Video Post করুন
-    </button>
-
-    <div
-      id="uploadMessage"
-      class="message">
-    </div>
-
-  </div>
-
-
-  <!-- VIDEOS -->
-  <div class="box">
-
-    <h2>🎬 Posted Videos</h2>
-
-    <div
-      id="videoList"
-      class="video-list">
-    </div>
-
-  </div>
-
+<div
+  id="selectedFileName"
+  class="file-name">
 </div>
 
+<button
+  id="uploadBtn"
+  class="post-btn"
+  onclick="uploadVideo()">
+  📤 Post করুন
+</button>
+
+<div
+  id="uploadMessage"
+  class="message">
 </div>
 
+  </div>  <!-- VIDEOS -->  <div class="box"><h2>🎬 Posted Videos</h2>
 
-<script>
+<div
+  id="videoList"
+  class="video-list">
+</div>
+
+  </div></div></div><script>
 
 /* =========================
    SUPABASE
@@ -929,11 +994,6 @@ async function uploadVideo(){
     "⏳ Video Upload হচ্ছে...";
 
 
-  /*
-    File-এর আসল নাম ব্যবহার করা হবে
-    title আলাদা করে লিখতে হবে না।
-  */
-
   const originalName =
     file.name;
 
@@ -943,6 +1003,7 @@ async function uploadVideo(){
       ? originalName
           .split(".")
           .pop()
+          .toLowerCase()
       : "mp4";
 
 
@@ -972,13 +1033,23 @@ async function uploadVideo(){
     extension;
 
 
+  /*
+    MIME type explicitly দেওয়া হচ্ছে।
+    এতে Browser ভিডিওটাকে সঠিকভাবে চিনতে পারবে।
+  */
+
   const {error:uploadError} =
     await supabaseClient
       .storage
       .from("videos")
       .upload(
         filePath,
-        file
+        file,
+        {
+          contentType:file.type,
+          cacheControl:"3600",
+          upsert:false
+        }
       );
 
 
@@ -993,11 +1064,6 @@ async function uploadVideo(){
     return;
   }
 
-
-  /*
-    Video title হিসেবে
-    original file name-এর extension ছাড়া অংশ ব্যবহার।
-  */
 
   const insertData = {
 
@@ -1110,10 +1176,15 @@ async function loadVideos(){
 
   if(error){
 
-    console.log(error);
+    console.log(
+      "VIDEO TABLE ERROR:",
+      error
+    );
 
     box.innerHTML =
-      '<div class="empty">❌ Video লোড হয়নি</div>';
+      '<div class="empty">❌ Video লোড হয়নি<br>' +
+      escapeHtml(error.message) +
+      '</div>';
 
     return;
   }
@@ -1155,6 +1226,11 @@ async function loadVideos(){
         : "Home";
 
 
+    /*
+      Private bucket হওয়ায়
+      Signed URL তৈরি করা হচ্ছে।
+    */
+
     const {
       data:signedData,
       error:signedError
@@ -1168,10 +1244,28 @@ async function loadVideos(){
         );
 
 
-    if(signedError){
+    if(
+      signedError ||
+      !signedData ||
+      !signedData.signedUrl
+    ){
+
+      console.log(
+        "SIGNED URL ERROR:",
+        signedError,
+        video.file_path
+      );
+
+
+      const errorText =
+        signedError
+          ? signedError.message
+          : "Signed URL পাওয়া যায়নি";
+
 
       card.innerHTML = `
         <div class="video-info">
+
           <div class="video-title">
             ${escapeHtml(video.title)}
           </div>
@@ -1180,9 +1274,11 @@ async function loadVideos(){
             📁 ${escapeHtml(folderName)}
           </div>
 
-          <div style="font-size:11px;color:#d00000">
-            ❌ Video দেখা যাচ্ছে না
+          <div class="error-text">
+            ❌ Video দেখা যাচ্ছে না<br>
+            ${escapeHtml(errorText)}
           </div>
+
         </div>
       `;
 
@@ -1366,7 +1462,5 @@ function escapeJs(value){
 
 checkSession();
 
-</script>
-
-</body>
+</script></body>
 </html>
