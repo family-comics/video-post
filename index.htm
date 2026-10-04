@@ -1,8 +1,15 @@
-<!DOCTYPE html><html lang="bn">
+<!DOCTYPE html>
+<html lang="bn">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Video Post</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><style>
+
+<title>Video Post</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
 *{
   box-sizing:border-box;
 }
@@ -92,6 +99,10 @@ button:active{
   background:#1769aa;
 }
 
+.purple{
+  background:#7b3fb5;
+}
+
 .hidden{
   display:none;
 }
@@ -105,7 +116,33 @@ button:active{
   word-break:break-word;
 }
 
-/* BACK */
+/* LOGIN */
+#loginBox{
+  max-width:320px;
+  margin:10px auto;
+}
+
+.login-switch{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4px;
+  margin-bottom:6px;
+}
+
+.login-switch button{
+  margin:0;
+}
+
+.login-switch .active{
+  background:#111;
+}
+
+.login-switch .inactive{
+  background:#ddd;
+  color:#222;
+}
+
+/* TOP NAV */
 .top-actions{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -221,18 +258,6 @@ button:active{
   margin:0;
 }
 
-/* LOGIN */
-#loginBox{
-  max-width:300px;
-  margin:10px auto;
-}
-
-#loginBox input,
-#loginBox button{
-  padding:7px;
-  font-size:12px;
-}
-
 /* MOBILE */
 @media(max-width:420px){
 
@@ -294,153 +319,288 @@ button:active{
     padding:5px 2px;
   }
 }
-</style></head><body><header>
+</style>
+
+</head>
+
+<body>
+
+<header>
   <h1>🎬 Video Post</h1>
   <p>ভিডিও শেয়ার করার সহজ জায়গা</p>
-</header><div class="container">  <!-- LOGIN -->  <div id="loginBox" class="box"><h2>🔐 Admin Login</h2>
-
-<input
-  id="email"
-  type="email"
-  placeholder="Admin Email"
-  autocomplete="username"
->
-
-<input
-  id="password"
-  type="password"
-  placeholder="Password"
-  autocomplete="current-password"
->
-
-<button onclick="login()">
-  🔐 Login
-</button>
-
-<div id="loginStatus" class="status">
-  Admin account দিয়ে Login করুন
-</div>
-
-  </div>  <!-- ADMIN AREA -->  <div id="adminArea" class="hidden"><!-- TOP NAV -->
-<div class="top-actions">
-
-  <button
-    class="blue"
-    onclick="goBack()"
-  >
-    ⬅️ Back
-  </button>
-
-  <button
-    class="gray"
-    onclick="goHome()"
-  >
-    🏠 Home
-  </button>
-
-</div>
+</header>
 
 
-<!-- ADMIN -->
-<div class="box">
+<div class="container">
 
-  <h2>👤 Admin Panel</h2>
+<!-- =========================
+     LOGIN
+========================= -->
 
-  <button
-    class="gray"
-    onclick="logout()"
-  >
-    🚪 Logout
-  </button>
+<div id="loginBox" class="box">
 
-</div>
-
-
-<!-- FOLDERS -->
-<div class="box">
-
-  <h2>📁 Folders</h2>
-
-  <button
-    class="folder-btn active"
-    id="homeFolderBtn"
-    onclick="selectFolder(null,'Home')"
-  >
-    🏠 Home
-  </button>
-
-  <div
-    id="folderList"
-    class="folder-grid"
-  ></div>
-
-
-  <div class="folder-create">
-
-    <input
-      id="folderName"
-      type="text"
-      placeholder="Folder নাম"
-    >
+  <div class="login-switch">
 
     <button
-      class="green"
-      onclick="createFolder()"
+      id="adminLoginTab"
+      class="active"
+      onclick="showAdminLogin()"
     >
-      📁 তৈরি
+      🔐 Admin
+    </button>
+
+    <button
+      id="guestLoginTab"
+      class="inactive"
+      onclick="showGuestLogin()"
+    >
+      👤 Guest
     </button>
 
   </div>
 
 
-  <div id="folderStatus" class="status"></div>
+  <!-- ADMIN LOGIN -->
 
-</div>
+  <div id="adminLoginForm">
 
+    <h2>🔐 Admin Login</h2>
 
-<!-- UPLOAD -->
-<div class="box">
+    <input
+      id="email"
+      type="email"
+      placeholder="Admin Email"
+      autocomplete="username"
+    >
 
-  <h2>📤 Video Post</h2>
+    <input
+      id="password"
+      type="password"
+      placeholder="Password"
+      autocomplete="current-password"
+    >
 
-  <div
-    id="currentFolderText"
-    class="status"
-  >
-    📁 Home
+    <button onclick="login()">
+      🔐 Login
+    </button>
+
+    <div id="loginStatus" class="status">
+      Admin account দিয়ে Login করুন
+    </div>
+
   </div>
 
-  <input
-    id="videoFile"
-    type="file"
-    accept="video/*"
-  >
 
-  <button
-    class="green"
-    onclick="uploadVideo()"
-  >
-    📤 Video Post করুন
-  </button>
+  <!-- GUEST LOGIN -->
 
-  <div id="uploadStatus" class="status"></div>
+  <div id="guestLoginForm" class="hidden">
+
+    <h2>👤 Guest Login</h2>
+
+    <input
+      id="guestId"
+      type="text"
+      placeholder="Guest ID লিখুন"
+      autocomplete="off"
+    >
+
+    <button
+      class="blue"
+      onclick="guestLogin()"
+    >
+      👤 Guest হিসেবে ঢুকুন
+    </button>
+
+    <div id="guestStatus" class="status">
+      আপনার পাওয়া Guest ID দিন
+    </div>
+
+  </div>
 
 </div>
 
 
-<!-- VIDEOS -->
-<div class="box">
+<!-- =========================
+     ADMIN AREA
+========================= -->
 
-  <h2>🎬 Posted Videos</h2>
+<div id="adminArea" class="hidden">
 
-  <div
-    id="videoList"
-    class="video-grid"
-  ></div>
+  <div class="top-actions">
+
+    <button
+      class="blue"
+      onclick="goBack()"
+    >
+      ⬅️ Back
+    </button>
+
+    <button
+      class="gray"
+      onclick="goHome()"
+    >
+      🏠 Home
+    </button>
+
+  </div>
+
+
+  <!-- ADMIN -->
+
+  <div class="box">
+
+    <h2>👤 Admin Panel</h2>
+
+    <button
+      class="gray"
+      onclick="logout()"
+    >
+      🚪 Logout
+    </button>
+
+  </div>
+
+
+  <!-- FOLDERS -->
+
+  <div class="box">
+
+    <h2>📁 Folders</h2>
+
+    <button
+      class="folder-btn active"
+      id="homeFolderBtn"
+      onclick="selectFolder(null,'Home')"
+    >
+      🏠 Home
+    </button>
+
+    <div
+      id="folderList"
+      class="folder-grid"
+    ></div>
+
+
+    <div class="folder-create">
+
+      <input
+        id="folderName"
+        type="text"
+        placeholder="Folder নাম"
+      >
+
+      <button
+        class="green"
+        onclick="createFolder()"
+      >
+        📁 তৈরি
+      </button>
+
+    </div>
+
+    <div
+      id="folderStatus"
+      class="status"
+    ></div>
+
+  </div>
+
+
+  <!-- UPLOAD -->
+
+  <div class="box">
+
+    <h2>📤 Video Post</h2>
+
+    <div
+      id="currentFolderText"
+      class="status"
+    >
+      📁 Home
+    </div>
+
+    <input
+      id="videoFile"
+      type="file"
+      accept="video/*"
+    >
+
+    <button
+      class="green"
+      onclick="uploadVideo()"
+    >
+      📤 Video Post করুন
+    </button>
+
+    <div
+      id="uploadStatus"
+      class="status"
+    ></div>
+
+  </div>
+
+
+  <!-- ADMIN VIDEOS -->
+
+  <div class="box">
+
+    <h2>🎬 Posted Videos</h2>
+
+    <div
+      id="videoList"
+      class="video-grid"
+    ></div>
+
+  </div>
 
 </div>
 
-  </div></div><script>
+
+<!-- =========================
+     GUEST AREA
+========================= -->
+
+<div id="guestArea" class="hidden">
+
+  <div class="box">
+
+    <h2>👤 Guest Area</h2>
+
+    <div
+      id="guestWelcome"
+      class="status"
+    >
+      ✅ আপনি Guest হিসেবে প্রবেশ করেছেন
+    </div>
+
+    <button
+      class="gray"
+      onclick="guestLogout()"
+    >
+      🚪 Logout
+    </button>
+
+  </div>
+
+
+  <div class="box">
+
+    <h2>🎬 Videos</h2>
+
+    <div
+      id="guestVideoList"
+      class="video-grid"
+    ></div>
+
+  </div>
+
+</div>
+
+
+</div>
+
+
+<script>
 
 /* =========================
    SUPABASE
@@ -455,6 +615,7 @@ const SUPABASE_KEY =
 const ADMIN_ID =
   "e6fcce5e-66bd-4399-ab92-69c1e9617c02";
 
+
 const supabaseClient =
   window.supabase.createClient(
     SUPABASE_URL,
@@ -467,8 +628,11 @@ const supabaseClient =
 ========================= */
 
 let currentUser = null;
+
 let selectedFolderId = null;
+
 let selectedFolderName = "Home";
+
 let folderHistory = [];
 
 
@@ -488,15 +652,45 @@ window.addEventListener(
     await supabaseClient.auth.getSession();
 
 
-    if(session){
+    if(!session){
 
-      currentUser =
-        session.user;
+      showLogin();
+
+      return;
+    }
 
 
-      if(currentUser.id === ADMIN_ID){
+    currentUser =
+      session.user;
 
-        showAdmin();
+
+    /* ADMIN */
+
+    if(
+      currentUser.id === ADMIN_ID
+    ){
+
+      showAdmin();
+
+      return;
+    }
+
+
+    /* GUEST */
+
+    if(
+      currentUser.is_anonymous
+    ){
+
+      const approved =
+        await checkGuestApproval(
+          currentUser.id
+        );
+
+
+      if(approved){
+
+        showGuest();
 
       }else{
 
@@ -506,18 +700,72 @@ window.addEventListener(
 
       }
 
-    }else{
-
-      showLogin();
-
+      return;
     }
+
+
+    /* UNKNOWN USER */
+
+    await supabaseClient.auth.signOut();
+
+    showLogin();
 
   }
 );
 
 
 /* =========================
-   LOGIN
+   LOGIN TABS
+========================= */
+
+function showAdminLogin(){
+
+  document
+    .getElementById("adminLoginForm")
+    .classList.remove("hidden");
+
+  document
+    .getElementById("guestLoginForm")
+    .classList.add("hidden");
+
+
+  document
+    .getElementById("adminLoginTab")
+    .className = "active";
+
+
+  document
+    .getElementById("guestLoginTab")
+    .className = "inactive";
+
+}
+
+
+function showGuestLogin(){
+
+  document
+    .getElementById("adminLoginForm")
+    .classList.add("hidden");
+
+  document
+    .getElementById("guestLoginForm")
+    .classList.remove("hidden");
+
+
+  document
+    .getElementById("adminLoginTab")
+    .className = "inactive";
+
+
+  document
+    .getElementById("guestLoginTab")
+    .className = "active";
+
+}
+
+
+/* =========================
+   ADMIN LOGIN
 ========================= */
 
 async function login(){
@@ -528,10 +776,12 @@ async function login(){
       .value
       .trim();
 
+
   const password =
     document
       .getElementById("password")
       .value;
+
 
   const status =
     document
@@ -567,6 +817,7 @@ async function login(){
   await supabaseClient.auth.signInWithPassword({
 
     email:email,
+
     password:password
 
   });
@@ -591,7 +842,9 @@ async function login(){
   }
 
 
-  if(data.user.id !== ADMIN_ID){
+  if(
+    data.user.id !== ADMIN_ID
+  ){
 
     await supabaseClient.auth.signOut();
 
@@ -605,7 +858,181 @@ async function login(){
   currentUser =
     data.user;
 
+
   showAdmin();
+
+}
+
+
+/* =========================
+   GUEST LOGIN
+========================= */
+
+async function guestLogin(){
+
+  const input =
+    document
+      .getElementById("guestId");
+
+
+  const status =
+    document
+      .getElementById("guestStatus");
+
+
+  const guestId =
+    input.value.trim();
+
+
+  if(!guestId){
+
+    status.textContent =
+      "❌ Guest ID দিন";
+
+    return;
+  }
+
+
+  status.textContent =
+    "⏳ Guest ID যাচাই হচ্ছে...";
+
+
+  /*
+     আগে যদি কোনো পুরোনো session থাকে
+     সেটা শেষ করা হবে।
+  */
+
+  await supabaseClient.auth.signOut();
+
+
+  /*
+     Anonymous account তৈরি
+  */
+
+  const {
+    data,
+    error
+  } =
+  await supabaseClient.auth.signInAnonymously();
+
+
+  if(error){
+
+    status.textContent =
+      "❌ Guest Login হয়নি: " +
+      error.message;
+
+    return;
+  }
+
+
+  if(
+    !data ||
+    !data.user
+  ){
+
+    status.textContent =
+      "❌ Guest account তৈরি হয়নি";
+
+    return;
+  }
+
+
+  currentUser =
+    data.user;
+
+
+  /*
+     Guest ID যাচাই
+  */
+
+  const {
+    data:loginResult,
+    error:rpcError
+  } =
+  await supabaseClient
+    .rpc(
+      "login_with_guest_id",
+      {
+        p_access_code:guestId
+      }
+    );
+
+
+  if(rpcError){
+
+    await supabaseClient.auth.signOut();
+
+    status.textContent =
+      "❌ Guest ID যাচাই হয়নি: " +
+      rpcError.message;
+
+    return;
+  }
+
+
+  if(loginResult !== true){
+
+    await supabaseClient.auth.signOut();
+
+    status.textContent =
+      "❌ এই Guest ID এখনো Approved নয় অথবা ভুল Guest ID";
+
+    return;
+  }
+
+
+  /*
+     সব ঠিক
+  */
+
+  status.textContent =
+    "✅ Guest Login সফল";
+
+
+  showGuest();
+
+}
+
+
+/* =========================
+   CHECK GUEST APPROVAL
+========================= */
+
+async function checkGuestApproval(
+  userId
+){
+
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+    .from("members")
+    .select("id,status")
+    .eq(
+      "user_id",
+      userId
+    )
+    .eq(
+      "status",
+      "approved"
+    )
+    .maybeSingle();
+
+
+  if(error){
+
+    console.log(
+      "Guest approval check:",
+      error.message
+    );
+
+    return false;
+  }
+
+
+  return !!data;
 
 }
 
@@ -622,13 +1049,23 @@ function showAdmin(){
 
 
   document
+    .getElementById("guestArea")
+    .classList.add("hidden");
+
+
+  document
     .getElementById("adminArea")
     .classList.remove("hidden");
 
 
-  selectedFolderId = null;
-  selectedFolderName = "Home";
-  folderHistory = [];
+  selectedFolderId =
+    null;
+
+  selectedFolderName =
+    "Home";
+
+  folderHistory =
+    [];
 
 
   updateFolderText();
@@ -641,6 +1078,41 @@ function showAdmin(){
 
 
 /* =========================
+   SHOW GUEST
+========================= */
+
+function showGuest(){
+
+  document
+    .getElementById("loginBox")
+    .classList.add("hidden");
+
+
+  document
+    .getElementById("adminArea")
+    .classList.add("hidden");
+
+
+  document
+    .getElementById("guestArea")
+    .classList.remove("hidden");
+
+
+  const welcome =
+    document
+      .getElementById("guestWelcome");
+
+
+  welcome.textContent =
+    "✅ Guest হিসেবে প্রবেশ করেছেন";
+
+
+  loadGuestVideos();
+
+}
+
+
+/* =========================
    SHOW LOGIN
 ========================= */
 
@@ -648,27 +1120,47 @@ function showLogin(){
 
   document
     .getElementById("loginBox")
-    .classList
-    .remove("hidden");
+    .classList.remove("hidden");
 
 
   document
     .getElementById("adminArea")
-    .classList
-    .add("hidden");
+    .classList.add("hidden");
+
+
+  document
+    .getElementById("guestArea")
+    .classList.add("hidden");
 
 }
 
 
 /* =========================
-   LOGOUT
+   ADMIN LOGOUT
 ========================= */
 
 async function logout(){
 
   await supabaseClient.auth.signOut();
 
-  currentUser = null;
+  currentUser =
+    null;
+
+  showLogin();
+
+}
+
+
+/* =========================
+   GUEST LOGOUT
+========================= */
+
+async function guestLogout(){
+
+  await supabaseClient.auth.signOut();
+
+  currentUser =
+    null;
 
   showLogin();
 
@@ -690,7 +1182,9 @@ async function loadFolders(){
     .select("*")
     .order(
       "created_at",
-      {ascending:true}
+      {
+        ascending:true
+      }
     );
 
 
@@ -711,7 +1205,8 @@ async function loadFolders(){
       .getElementById("folderList");
 
 
-  list.innerHTML = "";
+  list.innerHTML =
+    "";
 
 
   data.forEach(
@@ -720,12 +1215,14 @@ async function loadFolders(){
       const item =
         document.createElement("div");
 
+
       item.className =
         "folder-item";
 
 
       const selectButton =
         document.createElement("button");
+
 
       selectButton.className =
         "folder-btn";
@@ -743,7 +1240,8 @@ async function loadFolders(){
 
 
       selectButton.textContent =
-        "📁 " + folder.name;
+        "📁 " +
+        folder.name;
 
 
       selectButton.title =
@@ -764,6 +1262,7 @@ async function loadFolders(){
       const actions =
         document.createElement("div");
 
+
       actions.className =
         "folder-actions";
 
@@ -771,14 +1270,18 @@ async function loadFolders(){
       const renameButton =
         document.createElement("button");
 
+
       renameButton.className =
         "blue";
+
 
       renameButton.textContent =
         "✏️";
 
+
       renameButton.title =
         "Rename";
+
 
       renameButton.onclick =
         () => {
@@ -794,14 +1297,18 @@ async function loadFolders(){
       const deleteButton =
         document.createElement("button");
 
+
       deleteButton.className =
         "danger";
+
 
       deleteButton.textContent =
         "🗑️";
 
+
       deleteButton.title =
         "Delete";
+
 
       deleteButton.onclick =
         () => {
@@ -818,6 +1325,7 @@ async function loadFolders(){
         renameButton
       );
 
+
       actions.appendChild(
         deleteButton
       );
@@ -826,6 +1334,7 @@ async function loadFolders(){
       item.appendChild(
         selectButton
       );
+
 
       item.appendChild(
         actions
@@ -856,14 +1365,19 @@ function selectFolder(
   ){
 
     folderHistory.push({
+
       id:selectedFolderId,
+
       name:selectedFolderName
+
     });
 
   }
 
 
-  selectedFolderId = id;
+  selectedFolderId =
+    id;
+
 
   selectedFolderName =
     name || "Home";
@@ -906,12 +1420,14 @@ function updateFolderText(){
 
 
 /* =========================
-   BACK BUTTON
+   BACK
 ========================= */
 
 function goBack(){
 
-  if(folderHistory.length > 0){
+  if(
+    folderHistory.length > 0
+  ){
 
     const previous =
       folderHistory.pop();
@@ -920,14 +1436,15 @@ function goBack(){
     selectedFolderId =
       previous.id;
 
+
     selectedFolderName =
       previous.name;
-
 
   }else{
 
     selectedFolderId =
       null;
+
 
     selectedFolderName =
       "Home";
@@ -950,12 +1467,17 @@ function goBack(){
 
 function goHome(){
 
-  selectedFolderId = null;
+  selectedFolderId =
+    null;
+
 
   selectedFolderName =
     "Home";
 
-  folderHistory = [];
+
+  folderHistory =
+    [];
+
 
   updateFolderText();
 
@@ -1008,6 +1530,7 @@ async function createFolder(){
     .insert({
 
       id:id,
+
       name:name
 
     });
@@ -1027,7 +1550,8 @@ async function createFolder(){
   }
 
 
-  input.value = "";
+  input.value =
+    "";
 
 
   document
@@ -1082,9 +1606,12 @@ async function renameFolder(
   }
 
 
-  if(name === oldName){
+  if(
+    name === oldName
+  ){
 
     return;
+
   }
 
 
@@ -1195,10 +1722,14 @@ async function deleteFolder(
     selectedFolderId =
       null;
 
+
     selectedFolderName =
       "Home";
 
-    folderHistory = [];
+
+    folderHistory =
+      [];
+
 
     updateFolderText();
 
@@ -1254,9 +1785,7 @@ async function uploadVideo(){
 
 
   if(
-    !file.type.startsWith(
-      "video/"
-    )
+    !file.type.startsWith("video/")
   ){
 
     status.textContent =
@@ -1349,7 +1878,8 @@ async function uploadVideo(){
   }
 
 
-  input.value = "";
+  input.value =
+    "";
 
 
   status.textContent =
@@ -1362,7 +1892,7 @@ async function uploadVideo(){
 
 
 /* =========================
-   LOAD VIDEOS
+   LOAD ADMIN VIDEOS
 ========================= */
 
 async function loadVideos(){
@@ -1431,19 +1961,99 @@ async function loadVideos(){
   }
 
 
+  await renderVideoList(
+    list,
+    data,
+    true,
+    selectedFolderName
+  );
+
+}
+
+
+/* =========================
+   LOAD GUEST VIDEOS
+========================= */
+
+async function loadGuestVideos(){
+
+  const list =
+    document
+      .getElementById(
+        "guestVideoList"
+      );
+
+
+  list.innerHTML =
+    "<div class='status'>⏳ Video load হচ্ছে...</div>";
+
+
+  const {
+    data,
+    error
+  } =
+  await supabaseClient
+    .from("videos")
+    .select("*")
+    .order(
+      "created_at",
+      {
+        ascending:false
+      }
+    );
+
+
+  if(error){
+
+    list.innerHTML =
+      "<div class='status'>❌ Video load হয়নি: " +
+      escapeHtml(
+        error.message
+      ) +
+      "</div>";
+
+    return;
+  }
+
+
+  await renderVideoList(
+    list,
+    data,
+    false,
+    ""
+  );
+
+}
+
+
+/* =========================
+   RENDER VIDEO LIST
+========================= */
+
+async function renderVideoList(
+  list,
+  data,
+  isAdmin,
+  folderName
+){
+
   if(
     !data ||
     data.length === 0
   ){
 
     list.innerHTML =
-      "<div class='status'>📭 এই Folder-এ কোনো Video নেই</div>";
+      "<div class='status'>📭 কোনো Video নেই</div>";
 
     return;
   }
 
 
-  list.innerHTML = "";
+  list.innerHTML =
+    "";
+
+
+  let number = 1;
 
 
   for(
@@ -1481,7 +2091,7 @@ async function loadVideos(){
       card.innerHTML = `
 
         <div class="video-title">
-          ${escapeHtml(
+          ${number}. ${escapeHtml(
             video.title ||
             "Video"
           )}
@@ -1499,25 +2109,36 @@ async function loadVideos(){
           )}
         </div>
 
-        <button
-          class="danger"
-          onclick="deleteVideo(
-            ${video.id},
-            '${escapeJs(
-              video.file_path
-            )}'
-          )"
-        >
-          🗑️ Delete
-        </button>
-
       `;
+
+
+      if(isAdmin){
+
+        card.innerHTML += `
+
+          <button
+            class="danger"
+            onclick="deleteVideo(
+              ${video.id},
+              '${escapeJs(
+                video.file_path
+              )}'
+            )"
+          >
+            🗑️ Delete
+          </button>
+
+        `;
+
+      }
 
 
       list.appendChild(
         card
       );
 
+
+      number++;
 
       continue;
 
@@ -1530,6 +2151,13 @@ async function loadVideos(){
 
     card.innerHTML = `
 
+      <div class="video-title">
+        ${number}. ${escapeHtml(
+          video.title ||
+          "Video"
+        )}
+      </div>
+
       <video
         controls
         preload="metadata"
@@ -1537,18 +2165,17 @@ async function loadVideos(){
         src="${escapeHtml(url)}"
       ></video>
 
-      <div class="video-title">
-        ${escapeHtml(
-          video.title ||
-          "Video"
-        )}
-      </div>
-
-      <div class="small">
-        📁 ${escapeHtml(
-          selectedFolderName
-        )}
-      </div>
+      ${
+        folderName
+        ? `
+          <div class="small">
+            📁 ${escapeHtml(
+              folderName
+            )}
+          </div>
+        `
+        : ""
+      }
 
       <div class="card-buttons">
 
@@ -1569,9 +2196,18 @@ async function loadVideos(){
           ⬇️ Download
         </button>
 
+      </div>
+
+    `;
+
+
+    if(isAdmin){
+
+      card.innerHTML += `
+
         <button
           class="danger"
-          style="grid-column:1/3"
+          style="margin-top:3px"
           onclick="deleteVideo(
             ${video.id},
             '${escapeJs(
@@ -1582,14 +2218,17 @@ async function loadVideos(){
           🗑️ Delete
         </button>
 
-      </div>
+      `;
 
-    `;
+    }
 
 
     list.appendChild(
       card
     );
+
+
+    number++;
 
   }
 
@@ -1622,10 +2261,13 @@ function downloadVideo(url){
     );
 
 
-  link.href = url;
+  link.href =
+    url;
+
 
   link.download =
     "video.mp4";
+
 
   link.target =
     "_blank";
@@ -1782,5 +2424,7 @@ function escapeJs(value){
 
 }
 
-</script></body>
+</script>
+
+</body>
 </html>
