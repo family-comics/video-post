@@ -1,7 +1,8 @@
 <!DOCTYPE html><html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Video Post</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Post</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><style>
 *{
   box-sizing:border-box;
 }
@@ -17,7 +18,7 @@ header{
   background:#111;
   color:white;
   text-align:center;
-  padding:12px 8px;
+  padding:9px 6px;
   position:sticky;
   top:0;
   z-index:10;
@@ -25,43 +26,43 @@ header{
 
 header h1{
   margin:0;
-  font-size:23px;
+  font-size:20px;
 }
 
 header p{
-  margin:3px 0 0;
-  font-size:13px;
+  margin:2px 0 0;
+  font-size:11px;
   color:#ccc;
 }
 
 .container{
-  width:94%;
-  max-width:700px;
-  margin:10px auto;
+  width:96%;
+  max-width:680px;
+  margin:7px auto;
 }
 
 .box{
   background:white;
-  padding:10px;
-  margin-bottom:10px;
-  border-radius:10px;
-  box-shadow:0 1px 5px rgba(0,0,0,.08);
+  padding:7px;
+  margin-bottom:7px;
+  border-radius:8px;
+  box-shadow:0 1px 4px rgba(0,0,0,.07);
 }
 
 h2{
-  font-size:17px;
-  margin:0 0 8px;
+  font-size:15px;
+  margin:0 0 6px;
 }
 
 input,
 select,
 button{
   width:100%;
-  padding:9px;
-  margin:4px 0;
-  border-radius:7px;
+  padding:7px;
+  margin:3px 0;
+  border-radius:6px;
   border:1px solid #ccc;
-  font-size:14px;
+  font-size:12px;
 }
 
 button{
@@ -75,16 +76,20 @@ button:active{
   transform:scale(.98);
 }
 
-.danger{
-  background:#d93025;
-}
-
 .green{
   background:#168a3a;
 }
 
+.danger{
+  background:#d93025;
+}
+
 .gray{
   background:#666;
+}
+
+.blue{
+  background:#1769aa;
 }
 
 .hidden{
@@ -92,26 +97,48 @@ button:active{
 }
 
 .status{
-  font-size:13px;
-  padding:7px;
-  border-radius:6px;
+  font-size:11px;
+  padding:5px;
+  border-radius:5px;
   background:#f1f1f1;
-  margin-top:5px;
+  margin-top:4px;
   word-break:break-word;
 }
 
+/* BACK */
+.top-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5px;
+  margin-bottom:6px;
+}
+
+.top-actions button{
+  margin:0;
+  padding:7px 4px;
+}
+
+/* FOLDERS */
 .folder-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:6px;
+  gap:5px;
+}
+
+.folder-item{
+  min-width:0;
 }
 
 .folder-btn{
   background:#eee;
   color:#222;
   border:1px solid #ddd;
-  padding:8px 4px;
-  font-size:13px;
+  padding:7px 3px;
+  font-size:11px;
+  margin:0;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
 .folder-btn.active{
@@ -119,78 +146,152 @@ button:active{
   color:white;
 }
 
+.folder-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:3px;
+}
+
+.folder-actions button{
+  font-size:10px;
+  padding:5px 2px;
+  margin:0;
+}
+
+.folder-create{
+  display:grid;
+  grid-template-columns:1fr 90px;
+  gap:4px;
+  margin-top:5px;
+}
+
+.folder-create input{
+  margin:0;
+}
+
+.folder-create button{
+  margin:0;
+}
+
+/* VIDEO */
 .video-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:8px;
+  gap:6px;
 }
 
 .video-card{
   background:#fff;
   border:1px solid #ddd;
-  border-radius:9px;
-  padding:7px;
+  border-radius:7px;
+  padding:5px;
   overflow:hidden;
 }
 
 .video-card video{
   width:100%;
-  height:150px;
+  height:125px;
   object-fit:cover;
   background:#000;
-  border-radius:6px;
+  border-radius:5px;
 }
 
 .video-title{
-  font-size:14px;
+  font-size:12px;
   font-weight:bold;
-  margin:6px 0;
+  margin:4px 0;
   word-break:break-word;
 }
 
 .small{
-  font-size:11px;
+  font-size:10px;
   color:#777;
-  margin-bottom:5px;
+  margin-bottom:3px;
 }
 
 .card-buttons{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:5px;
+  gap:3px;
 }
 
 .card-buttons button{
-  font-size:12px;
-  padding:7px 3px;
+  font-size:10px;
+  padding:6px 2px;
   margin:0;
 }
 
+/* LOGIN */
+#loginBox{
+  max-width:300px;
+  margin:10px auto;
+}
+
+#loginBox input,
+#loginBox button{
+  padding:7px;
+  font-size:12px;
+}
+
+/* MOBILE */
 @media(max-width:420px){
+
   .container{
-    width:96%;
+    width:97%;
   }
 
   header h1{
-    font-size:21px;
+    font-size:19px;
   }
 
-  .video-card video{
-    height:125px;
+  header p{
+    font-size:10px;
   }
 
-  .folder-grid{
-    grid-template-columns:repeat(3,1fr);
+  .box{
+    padding:6px;
+    margin-bottom:6px;
   }
 
-  .video-grid{
-    gap:6px;
+  h2{
+    font-size:14px;
   }
 
   input,
+  select,
   button{
-    font-size:13px;
-    padding:8px;
+    padding:7px 5px;
+    font-size:11px;
+  }
+
+  .folder-grid{
+    gap:4px;
+  }
+
+  .folder-btn{
+    font-size:10px;
+    padding:6px 2px;
+  }
+
+  .video-grid{
+    gap:5px;
+  }
+
+  .video-card{
+    padding:4px;
+  }
+
+  .video-card video{
+    height:110px;
+  }
+
+  .video-title{
+    font-size:11px;
+  }
+
+  .card-buttons button{
+    font-size:9px;
+    padding:5px 2px;
   }
 }
 </style></head><body><header>
@@ -220,15 +321,35 @@ button:active{
   Admin account দিয়ে Login করুন
 </div>
 
-  </div>  <!-- ADMIN AREA -->  <div id="adminArea" class="hidden"><div class="box">
+  </div>  <!-- ADMIN AREA -->  <div id="adminArea" class="hidden"><!-- TOP NAV -->
+<div class="top-actions">
 
-  <div style="font-size:13px;margin-bottom:7px;">
-    👤 Admin Panel
-  </div>
+  <button
+    class="blue"
+    onclick="goBack()"
+  >
+    ⬅️ Back
+  </button>
 
-  <div id="userEmail" class="small"></div>
+  <button
+    class="gray"
+    onclick="goHome()"
+  >
+    🏠 Home
+  </button>
 
-  <button class="gray" onclick="logout()">
+</div>
+
+
+<!-- ADMIN -->
+<div class="box">
+
+  <h2>👤 Admin Panel</h2>
+
+  <button
+    class="gray"
+    onclick="logout()"
+  >
     🚪 Logout
   </button>
 
@@ -243,26 +364,34 @@ button:active{
   <button
     class="folder-btn active"
     id="homeFolderBtn"
-    onclick="selectFolder(null)"
+    onclick="selectFolder(null,'Home')"
   >
     🏠 Home
   </button>
 
-  <div id="folderList" class="folder-grid"></div>
+  <div
+    id="folderList"
+    class="folder-grid"
+  ></div>
 
-  <input
-    id="folderName"
-    type="text"
-    placeholder="নতুন Folder-এর নাম"
-  >
 
-  <button class="green" onclick="createFolder()">
-    📁 Folder তৈরি
-  </button>
+  <div class="folder-create">
 
-  <button class="danger" onclick="deleteSelectedFolder()">
-    🗑️ Selected Folder Delete
-  </button>
+    <input
+      id="folderName"
+      type="text"
+      placeholder="Folder নাম"
+    >
+
+    <button
+      class="green"
+      onclick="createFolder()"
+    >
+      📁 তৈরি
+    </button>
+
+  </div>
+
 
   <div id="folderStatus" class="status"></div>
 
@@ -304,7 +433,10 @@ button:active{
 
   <h2>🎬 Posted Videos</h2>
 
-  <div id="videoList" class="video-grid"></div>
+  <div
+    id="videoList"
+    class="video-grid"
+  ></div>
 
 </div>
 
@@ -336,43 +468,52 @@ const supabaseClient =
 
 let currentUser = null;
 let selectedFolderId = null;
+let selectedFolderName = "Home";
+let folderHistory = [];
 
 
 /* =========================
    PAGE START
 ========================= */
 
-window.addEventListener("load", async () => {
+window.addEventListener(
+  "load",
+  async () => {
 
-  const {
-    data:{
-      session
-    }
-  } = await supabaseClient.auth.getSession();
+    const {
+      data:{
+        session
+      }
+    } =
+    await supabaseClient.auth.getSession();
 
-  if(session){
 
-    currentUser = session.user;
+    if(session){
 
-    if(currentUser.id === ADMIN_ID){
+      currentUser =
+        session.user;
 
-      showAdmin();
+
+      if(currentUser.id === ADMIN_ID){
+
+        showAdmin();
+
+      }else{
+
+        await supabaseClient.auth.signOut();
+
+        showLogin();
+
+      }
 
     }else{
-
-      await supabaseClient.auth.signOut();
 
       showLogin();
 
     }
 
-  }else{
-
-    showLogin();
-
   }
-
-});
+);
 
 
 /* =========================
@@ -382,13 +523,19 @@ window.addEventListener("load", async () => {
 async function login(){
 
   const email =
-    document.getElementById("email").value.trim();
+    document
+      .getElementById("email")
+      .value
+      .trim();
 
   const password =
-    document.getElementById("password").value;
+    document
+      .getElementById("password")
+      .value;
 
   const status =
-    document.getElementById("loginStatus");
+    document
+      .getElementById("loginStatus");
 
 
   if(!email){
@@ -398,6 +545,7 @@ async function login(){
 
     return;
   }
+
 
   if(!password){
 
@@ -417,15 +565,18 @@ async function login(){
     error
   } =
   await supabaseClient.auth.signInWithPassword({
+
     email:email,
     password:password
+
   });
 
 
   if(error){
 
     status.textContent =
-      "❌ Login হয়নি: " + error.message;
+      "❌ Login হয়নি: " +
+      error.message;
 
     return;
   }
@@ -469,15 +620,18 @@ function showAdmin(){
     .getElementById("loginBox")
     .classList.add("hidden");
 
+
   document
     .getElementById("adminArea")
     .classList.remove("hidden");
 
-  document
-    .getElementById("userEmail")
-    .textContent =
-      "Logged in: " + currentUser.email;
 
+  selectedFolderId = null;
+  selectedFolderName = "Home";
+  folderHistory = [];
+
+
+  updateFolderText();
 
   loadFolders();
 
@@ -494,11 +648,14 @@ function showLogin(){
 
   document
     .getElementById("loginBox")
-    .classList.remove("hidden");
+    .classList
+    .remove("hidden");
+
 
   document
     .getElementById("adminArea")
-    .classList.add("hidden");
+    .classList
+    .add("hidden");
 
 }
 
@@ -519,7 +676,7 @@ async function logout(){
 
 
 /* =========================
-   LOAD FOLDERS
+   FOLDER LOAD
 ========================= */
 
 async function loadFolders(){
@@ -531,7 +688,10 @@ async function loadFolders(){
   await supabaseClient
     .from("folders")
     .select("*")
-    .order("created_at",{ascending:true});
+    .order(
+      "created_at",
+      {ascending:true}
+    );
 
 
   if(error){
@@ -547,28 +707,137 @@ async function loadFolders(){
 
 
   const list =
-    document.getElementById("folderList");
+    document
+      .getElementById("folderList");
+
 
   list.innerHTML = "";
 
 
-  data.forEach(folder => {
+  data.forEach(
+    folder => {
 
-    const button =
-      document.createElement("button");
+      const item =
+        document.createElement("div");
 
-    button.className =
-      "folder-btn";
+      item.className =
+        "folder-item";
 
-    button.textContent =
-      "📁 " + folder.name;
 
-    button.onclick = () =>
-      selectFolder(folder.id, folder.name);
+      const selectButton =
+        document.createElement("button");
 
-    list.appendChild(button);
+      selectButton.className =
+        "folder-btn";
 
-  });
+
+      if(
+        selectedFolderId === folder.id
+      ){
+
+        selectButton.classList.add(
+          "active"
+        );
+
+      }
+
+
+      selectButton.textContent =
+        "📁 " + folder.name;
+
+
+      selectButton.title =
+        folder.name;
+
+
+      selectButton.onclick =
+        () => {
+
+          selectFolder(
+            folder.id,
+            folder.name
+          );
+
+        };
+
+
+      const actions =
+        document.createElement("div");
+
+      actions.className =
+        "folder-actions";
+
+
+      const renameButton =
+        document.createElement("button");
+
+      renameButton.className =
+        "blue";
+
+      renameButton.textContent =
+        "✏️";
+
+      renameButton.title =
+        "Rename";
+
+      renameButton.onclick =
+        () => {
+
+          renameFolder(
+            folder.id,
+            folder.name
+          );
+
+        };
+
+
+      const deleteButton =
+        document.createElement("button");
+
+      deleteButton.className =
+        "danger";
+
+      deleteButton.textContent =
+        "🗑️";
+
+      deleteButton.title =
+        "Delete";
+
+      deleteButton.onclick =
+        () => {
+
+          deleteFolder(
+            folder.id,
+            folder.name
+          );
+
+        };
+
+
+      actions.appendChild(
+        renameButton
+      );
+
+      actions.appendChild(
+        deleteButton
+      );
+
+
+      item.appendChild(
+        selectButton
+      );
+
+      item.appendChild(
+        actions
+      );
+
+
+      list.appendChild(
+        item
+      );
+
+    }
+  );
 
 }
 
@@ -577,26 +846,120 @@ async function loadFolders(){
    SELECT FOLDER
 ========================= */
 
-function selectFolder(id,name){
+function selectFolder(
+  id,
+  name
+){
+
+  if(
+    selectedFolderId !== id
+  ){
+
+    folderHistory.push({
+      id:selectedFolderId,
+      name:selectedFolderName
+    });
+
+  }
+
 
   selectedFolderId = id;
 
+  selectedFolderName =
+    name || "Home";
+
+
+  updateFolderText();
+
+  loadFolders();
+
+  loadVideos();
+
+}
+
+
+/* =========================
+   UPDATE FOLDER TEXT
+========================= */
+
+function updateFolderText(){
 
   document
-    .getElementById("currentFolderText")
+    .getElementById(
+      "currentFolderText"
+    )
     .textContent =
-      id
-      ? "📁 " + name
-      : "📁 Home";
+      "📁 " +
+      selectedFolderName;
 
 
   document
-    .getElementById("homeFolderBtn")
+    .getElementById(
+      "homeFolderBtn"
+    )
     .classList.toggle(
       "active",
-      id === null
+      selectedFolderId === null
     );
 
+}
+
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+function goBack(){
+
+  if(folderHistory.length > 0){
+
+    const previous =
+      folderHistory.pop();
+
+
+    selectedFolderId =
+      previous.id;
+
+    selectedFolderName =
+      previous.name;
+
+
+  }else{
+
+    selectedFolderId =
+      null;
+
+    selectedFolderName =
+      "Home";
+
+  }
+
+
+  updateFolderText();
+
+  loadFolders();
+
+  loadVideos();
+
+}
+
+
+/* =========================
+   HOME
+========================= */
+
+function goHome(){
+
+  selectedFolderId = null;
+
+  selectedFolderName =
+    "Home";
+
+  folderHistory = [];
+
+  updateFolderText();
+
+  loadFolders();
 
   loadVideos();
 
@@ -610,7 +973,11 @@ function selectFolder(id,name){
 async function createFolder(){
 
   const input =
-    document.getElementById("folderName");
+    document
+      .getElementById(
+        "folderName"
+      );
+
 
   const name =
     input.value.trim();
@@ -619,7 +986,9 @@ async function createFolder(){
   if(!name){
 
     document
-      .getElementById("folderStatus")
+      .getElementById(
+        "folderStatus"
+      )
       .textContent =
       "❌ Folder-এর নাম দিন";
 
@@ -637,15 +1006,19 @@ async function createFolder(){
   await supabaseClient
     .from("folders")
     .insert({
+
       id:id,
       name:name
+
     });
 
 
   if(error){
 
     document
-      .getElementById("folderStatus")
+      .getElementById(
+        "folderStatus"
+      )
       .textContent =
       "❌ Folder তৈরি হয়নি: " +
       error.message;
@@ -658,9 +1031,106 @@ async function createFolder(){
 
 
   document
-    .getElementById("folderStatus")
+    .getElementById(
+      "folderStatus"
+    )
     .textContent =
     "✅ Folder তৈরি হয়েছে";
+
+
+  loadFolders();
+
+}
+
+
+/* =========================
+   RENAME FOLDER
+========================= */
+
+async function renameFolder(
+  id,
+  oldName
+){
+
+  const newName =
+    prompt(
+      "নতুন Folder নাম দিন:",
+      oldName
+    );
+
+
+  if(
+    newName === null
+  ){
+
+    return;
+
+  }
+
+
+  const name =
+    newName.trim();
+
+
+  if(!name){
+
+    alert(
+      "❌ Folder-এর নাম খালি রাখা যাবে না"
+    );
+
+    return;
+  }
+
+
+  if(name === oldName){
+
+    return;
+  }
+
+
+  const {
+    error
+  } =
+  await supabaseClient
+    .from("folders")
+    .update({
+      name:name
+    })
+    .eq(
+      "id",
+      id
+    );
+
+
+  if(error){
+
+    alert(
+      "❌ Folder Rename হয়নি: " +
+      error.message
+    );
+
+    return;
+  }
+
+
+  if(
+    selectedFolderId === id
+  ){
+
+    selectedFolderName =
+      name;
+
+    updateFolderText();
+
+  }
+
+
+  document
+    .getElementById(
+      "folderStatus"
+    )
+    .textContent =
+    "✅ Folder Rename হয়েছে";
 
 
   loadFolders();
@@ -672,25 +1142,24 @@ async function createFolder(){
    DELETE FOLDER
 ========================= */
 
-async function deleteSelectedFolder(){
-
-  if(selectedFolderId === null){
-
-    document
-      .getElementById("folderStatus")
-      .textContent =
-      "❌ আগে একটি Folder select করুন";
-
-    return;
-  }
-
+async function deleteFolder(
+  id,
+  name
+){
 
   const ok =
     confirm(
-      "এই Folder delete করতে চান?"
+      "📁 " +
+      name +
+      "\n\nএই Folder delete করতে চান?"
     );
 
-  if(!ok) return;
+
+  if(!ok){
+
+    return;
+
+  }
 
 
   const {
@@ -699,13 +1168,18 @@ async function deleteSelectedFolder(){
   await supabaseClient
     .from("folders")
     .delete()
-    .eq("id",selectedFolderId);
+    .eq(
+      "id",
+      id
+    );
 
 
   if(error){
 
     document
-      .getElementById("folderStatus")
+      .getElementById(
+        "folderStatus"
+      )
       .textContent =
       "❌ Folder delete হয়নি: " +
       error.message;
@@ -714,19 +1188,29 @@ async function deleteSelectedFolder(){
   }
 
 
-  selectedFolderId = null;
+  if(
+    selectedFolderId === id
+  ){
+
+    selectedFolderId =
+      null;
+
+    selectedFolderName =
+      "Home";
+
+    folderHistory = [];
+
+    updateFolderText();
+
+  }
 
 
   document
-    .getElementById("folderStatus")
+    .getElementById(
+      "folderStatus"
+    )
     .textContent =
     "✅ Folder delete হয়েছে";
-
-
-  document
-    .getElementById("currentFolderText")
-    .textContent =
-    "📁 Home";
 
 
   loadFolders();
@@ -743,10 +1227,18 @@ async function deleteSelectedFolder(){
 async function uploadVideo(){
 
   const input =
-    document.getElementById("videoFile");
+    document
+      .getElementById(
+        "videoFile"
+      );
+
 
   const status =
-    document.getElementById("uploadStatus");
+    document
+      .getElementById(
+        "uploadStatus"
+      );
+
 
   const file =
     input.files[0];
@@ -761,7 +1253,11 @@ async function uploadVideo(){
   }
 
 
-  if(!file.type.startsWith("video/")){
+  if(
+    !file.type.startsWith(
+      "video/"
+    )
+  ){
 
     status.textContent =
       "❌ শুধু Video file দেওয়া যাবে";
@@ -775,8 +1271,10 @@ async function uploadVideo(){
 
 
   const safeName =
-    file.name
-      .replace(/[^a-zA-Z0-9._-]/g,"_");
+    file.name.replace(
+      /[^a-zA-Z0-9._-]/g,
+      "_"
+    );
 
 
   const filePath =
@@ -796,7 +1294,9 @@ async function uploadVideo(){
       file,
       {
         contentType:
-          file.type || "video/mp4",
+          file.type ||
+          "video/mp4",
+
         upsert:false
       }
     );
@@ -818,10 +1318,16 @@ async function uploadVideo(){
   await supabaseClient
     .from("videos")
     .insert({
+
       id:Date.now(),
+
       title:file.name,
+
       file_path:filePath,
-      folder_id:selectedFolderId
+
+      folder_id:
+        selectedFolderId
+
     });
 
 
@@ -830,11 +1336,13 @@ async function uploadVideo(){
     await supabaseClient
       .storage
       .from("videos")
-      .remove([filePath]);
+      .remove([
+        filePath
+      ]);
 
 
     status.textContent =
-      "❌ Video database-এ save হয়নি: " +
+      "❌ Database-এ save হয়নি: " +
       dbError.message;
 
     return;
@@ -860,7 +1368,10 @@ async function uploadVideo(){
 async function loadVideos(){
 
   const list =
-    document.getElementById("videoList");
+    document
+      .getElementById(
+        "videoList"
+      );
 
 
   list.innerHTML =
@@ -873,11 +1384,15 @@ async function loadVideos(){
       .select("*")
       .order(
         "created_at",
-        {ascending:false}
+        {
+          ascending:false
+        }
       );
 
 
-  if(selectedFolderId !== null){
+  if(
+    selectedFolderId !== null
+  ){
 
     query =
       query.eq(
@@ -899,21 +1414,27 @@ async function loadVideos(){
   const {
     data,
     error
-  } = await query;
+  } =
+  await query;
 
 
   if(error){
 
     list.innerHTML =
-      "<div class='status'>❌ Video load হয়নি: "
-      + escapeHtml(error.message)
-      + "</div>";
+      "<div class='status'>❌ Video load হয়নি: " +
+      escapeHtml(
+        error.message
+      ) +
+      "</div>";
 
     return;
   }
 
 
-  if(!data || data.length === 0){
+  if(
+    !data ||
+    data.length === 0
+  ){
 
     list.innerHTML =
       "<div class='status'>📭 এই Folder-এ কোনো Video নেই</div>";
@@ -925,10 +1446,15 @@ async function loadVideos(){
   list.innerHTML = "";
 
 
-  for(const video of data){
+  for(
+    const video of data
+  ){
 
     const card =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
+
 
     card.className =
       "video-card";
@@ -947,12 +1473,18 @@ async function loadVideos(){
       );
 
 
-    if(signedError || !signedData){
+    if(
+      signedError ||
+      !signedData
+    ){
 
       card.innerHTML = `
 
         <div class="video-title">
-          ${escapeHtml(video.title || "Video")}
+          ${escapeHtml(
+            video.title ||
+            "Video"
+          )}
         </div>
 
         <div class="status">
@@ -969,16 +1501,26 @@ async function loadVideos(){
 
         <button
           class="danger"
-          onclick="deleteVideo(${video.id},'${escapeJs(video.file_path)}')"
+          onclick="deleteVideo(
+            ${video.id},
+            '${escapeJs(
+              video.file_path
+            )}'
+          )"
         >
           🗑️ Delete
         </button>
 
       `;
 
-      list.appendChild(card);
+
+      list.appendChild(
+        card
+      );
+
 
       continue;
+
     }
 
 
@@ -996,24 +1538,33 @@ async function loadVideos(){
       ></video>
 
       <div class="video-title">
-        ${escapeHtml(video.title || "Video")}
+        ${escapeHtml(
+          video.title ||
+          "Video"
+        )}
       </div>
 
       <div class="small">
-        📁 ${selectedFolderId === null ? "Home" : "Folder"}
+        📁 ${escapeHtml(
+          selectedFolderName
+        )}
       </div>
 
       <div class="card-buttons">
 
         <button
           class="green"
-          onclick="openVideo('${escapeJs(url)}')"
+          onclick="openVideo(
+            '${escapeJs(url)}'
+          )"
         >
           ▶️ Open
         </button>
 
         <button
-          onclick="downloadVideo('${escapeJs(url)}')"
+          onclick="downloadVideo(
+            '${escapeJs(url)}'
+          )"
         >
           ⬇️ Download
         </button>
@@ -1021,7 +1572,12 @@ async function loadVideos(){
         <button
           class="danger"
           style="grid-column:1/3"
-          onclick="deleteVideo(${video.id},'${escapeJs(video.file_path)}')"
+          onclick="deleteVideo(
+            ${video.id},
+            '${escapeJs(
+              video.file_path
+            )}'
+          )"
         >
           🗑️ Delete
         </button>
@@ -1031,7 +1587,9 @@ async function loadVideos(){
     `;
 
 
-    list.appendChild(card);
+    list.appendChild(
+      card
+    );
 
   }
 
@@ -1059,7 +1617,10 @@ function openVideo(url){
 function downloadVideo(url){
 
   const link =
-    document.createElement("a");
+    document.createElement(
+      "a"
+    );
+
 
   link.href = url;
 
@@ -1069,9 +1630,14 @@ function downloadVideo(url){
   link.target =
     "_blank";
 
-  document.body.appendChild(link);
+
+  document.body.appendChild(
+    link
+  );
+
 
   link.click();
+
 
   link.remove();
 
@@ -1092,7 +1658,12 @@ async function deleteVideo(
       "এই Video delete করতে চান?"
     );
 
-  if(!ok) return;
+
+  if(!ok){
+
+    return;
+
+  }
 
 
   const {
@@ -1109,8 +1680,8 @@ async function deleteVideo(
   if(storageError){
 
     alert(
-      "❌ Storage থেকে Video delete হয়নি: "
-      + storageError.message
+      "❌ Storage থেকে Video delete হয়নি: " +
+      storageError.message
     );
 
     return;
@@ -1123,14 +1694,17 @@ async function deleteVideo(
   await supabaseClient
     .from("videos")
     .delete()
-    .eq("id",id);
+    .eq(
+      "id",
+      id
+    );
 
 
   if(dbError){
 
     alert(
-      "❌ Database থেকে Video delete হয়নি: "
-      + dbError.message
+      "❌ Database থেকে Video delete হয়নি: " +
+      dbError.message
     );
 
     return;
@@ -1153,24 +1727,58 @@ async function deleteVideo(
 
 function escapeHtml(value){
 
-  return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+  return String(
+    value ?? ""
+  )
+  .replace(
+    /&/g,
+    "&amp;"
+  )
+  .replace(
+    /</g,
+    "&lt;"
+  )
+  .replace(
+    />/g,
+    "&gt;"
+  )
+  .replace(
+    /"/g,
+    "&quot;"
+  )
+  .replace(
+    /'/g,
+    "&#039;"
+  );
 
 }
 
 
 function escapeJs(value){
 
-  return String(value ?? "")
-    .replace(/\\/g,"\\\\")
-    .replace(/'/g,"\\'")
-    .replace(/"/g,'\\"')
-    .replace(/\n/g,"\\n")
-    .replace(/\r/g,"\\r");
+  return String(
+    value ?? ""
+  )
+  .replace(
+    /\\/g,
+    "\\\\"
+  )
+  .replace(
+    /'/g,
+    "\\'"
+  )
+  .replace(
+    /"/g,
+    '\\"'
+  )
+  .replace(
+    /\n/g,
+    "\\n"
+  )
+  .replace(
+    /\r/g,
+    "\\r"
+  );
 
 }
 
