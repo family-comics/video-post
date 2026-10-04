@@ -48,32 +48,30 @@ header p{
 }
 
 h2{
-  font-size:16px;
+  font-size:15px;
   margin:0 0 7px;
 }
 
-/* ছোট ইনপুট / SELECT */
 input,
 select{
   width:100%;
-  padding:8px 9px;
+  padding:8px;
   margin:3px 0;
-  border-radius:6px;
   border:1px solid #ccc;
+  border-radius:6px;
   font-size:13px;
   background:#fff;
 }
 
-/* সাধারণ ছোট বাটন */
 button{
   width:auto;
-  padding:7px 11px;
+  padding:7px 10px;
   margin:3px 2px 3px 0;
-  border-radius:6px;
   border:0;
-  font-size:12px;
+  border-radius:6px;
   background:#111;
   color:#fff;
+  font-size:12px;
   cursor:pointer;
 }
 
@@ -81,50 +79,43 @@ button:disabled{
   background:#999;
 }
 
-.logout{
+.hidden{
+  display:none!important;
+}
+
+.logout,
+.delete{
   background:#d00000;
+}
+
+.download{
+  background:#087f23;
 }
 
 .message{
   text-align:center;
-  padding:4px;
   font-size:12px;
+  padding:4px;
+  word-break:break-word;
 }
 
 /* LOGIN */
 #loginBox{
   max-width:330px;
-  margin:14px auto;
-}
-
-#loginBox input{
-  padding:8px;
+  margin:15px auto;
 }
 
 #loginBox button{
   width:100%;
-  margin-top:4px;
+  margin-top:5px;
 }
 
-/* ADMIN PANEL */
-.admin-actions{
-  display:flex;
-  gap:5px;
-  align-items:center;
-  flex-wrap:wrap;
-}
-
-/* HIDDEN */
-.hidden{
-  display:none!important;
-}
-
-/* FOLDERS */
+/* FOLDER */
 .folder-list{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:5px;
-  margin-bottom:5px;
+  margin-bottom:6px;
 }
 
 .folder{
@@ -134,7 +125,6 @@ button:disabled{
   text-align:center;
   font-size:11px;
   cursor:pointer;
-  overflow:hidden;
   word-break:break-word;
 }
 
@@ -143,56 +133,36 @@ button:disabled{
   color:#fff;
 }
 
-/* FOLDER CONTROLS */
-.folder-controls{
+.folder-row{
   display:flex;
   gap:5px;
-  align-items:center;
 }
 
-.folder-controls input{
+.folder-row input{
   flex:1;
-  margin:0;
+  min-width:0;
 }
 
-.folder-controls button{
+.folder-row button{
   flex-shrink:0;
-  margin:0;
-}
-
-.folder-delete-btn{
-  background:#d00000;
 }
 
 /* VIDEO POST */
-.video-controls{
-  display:flex;
-  gap:5px;
-  align-items:center;
-  flex-wrap:wrap;
-}
-
-.video-controls select{
-  flex:1;
-  min-width:120px;
-  margin:0;
-}
-
 .file-input{
   width:100%;
   padding:6px;
   font-size:12px;
-  margin:4px 0;
-  border:1px solid #ccc;
-  border-radius:6px;
   background:#fafafa;
 }
 
-.post-btn{
-  background:#111;
+.file-name{
+  font-size:11px;
+  color:#555;
+  margin:3px 0;
+  word-break:break-word;
 }
 
-/* VIDEO LIST */
+/* VIDEO */
 .video-list{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -209,8 +179,8 @@ button:disabled{
 .video-card video{
   width:100%;
   height:145px;
-  background:#000;
   display:block;
+  background:#000;
 }
 
 .video-info{
@@ -218,52 +188,36 @@ button:disabled{
 }
 
 .video-title{
-  font-weight:bold;
   font-size:12px;
+  font-weight:bold;
   margin-bottom:3px;
   word-break:break-word;
 }
 
 .video-folder{
-  color:#777;
   font-size:10px;
+  color:#777;
   margin-bottom:3px;
 }
 
 .small-btn{
-  padding:6px 8px;
   font-size:10px;
-  margin:2px 1px;
+  padding:6px 8px;
 }
 
-.download{
-  background:#087f23;
-}
-
-.delete{
-  background:#d00000;
+.error-text{
+  color:#d00000;
+  font-size:10px;
+  line-height:1.4;
+  word-break:break-word;
 }
 
 .empty{
   grid-column:1/-1;
   text-align:center;
-  color:#777;
   padding:18px 5px;
+  color:#777;
   font-size:12px;
-}
-
-.file-name{
-  font-size:11px;
-  color:#555;
-  margin:3px 0;
-  word-break:break-word;
-}
-
-.error-text{
-  font-size:10px;
-  color:#d00000;
-  padding:4px 0;
-  word-break:break-word;
 }
 
 @media(max-width:420px){
@@ -278,11 +232,6 @@ button:disabled{
 
   .box{
     padding:8px;
-    margin-bottom:7px;
-  }
-
-  h2{
-    font-size:15px;
   }
 
   .video-list{
@@ -306,18 +255,15 @@ button:disabled{
     padding:6px 9px;
     font-size:11px;
   }
-
-  .video-controls select{
-    font-size:12px;
-  }
 }
 </style></head><body><header>
   <h1>🎬 Video Post</h1>
   <p>ভিডিও শেয়ার করার সহজ জায়গা</p>
-</header><div class="container"><!-- LOGIN --><div id="loginBox" class="box">  <h2>🔐 Admin Login</h2><input
+</header><div class="container"><!-- ================= LOGIN ================= --><div id="loginBox" class="box">  <h2>🔐 Admin Login</h2><input
 id="email"
 type="email"
 placeholder="Admin Email"
+autocomplete="username"
 
 «»
 
@@ -325,23 +271,24 @@ placeholder="Admin Email"
 id="password"
 type="password"
 placeholder="Password"
+autocomplete="current-password"
 
 «»
 
   <button onclick="login()">
     🔐 Login
-  </button>  <div id="loginMessage" class="message"></div></div><!-- ADMIN --><div id="adminArea" class="hidden">  <!-- ADMIN PANEL -->  <div class="box"><h2>👤 Admin Panel</h2>
+  </button>  <div id="loginMessage" class="message"></div></div><!-- ================= ADMIN ================= --><div id="adminArea" class="hidden">  <!-- ADMIN -->  <div class="box"><h2>👤 Admin Panel</h2>
 
 <div
   id="adminEmail"
   style="font-size:11px;color:#777;margin-bottom:3px">
 </div>
 
-<div class="admin-actions">
-  <button class="logout" onclick="logout()">
-    🚪 Logout
-  </button>
-</div>
+<button
+  class="logout"
+  onclick="logout()">
+  🚪 Logout
+</button>
 
   </div>  <!-- FOLDERS -->  <div class="box"><h2>📁 Folders</h2>
 
@@ -350,7 +297,7 @@ placeholder="Password"
   class="folder-list">
 </div>
 
-<div class="folder-controls">
+<div class="folder-row">
 
   <input
     id="folderName"
@@ -365,7 +312,7 @@ placeholder="Password"
 </div>
 
 <button
-  class="folder-delete-btn"
+  class="delete"
   onclick="deleteSelectedFolder()">
   🗑️ Delete
 </button>
@@ -377,13 +324,9 @@ placeholder="Password"
 
   </div>  <!-- VIDEO POST -->  <div class="box"><h2>📤 Video Post</h2>
 
-<div class="video-controls">
-
-  <select id="videoFolder">
-    <option value="">📁 Home</option>
-  </select>
-
-</div>
+<select id="videoFolder">
+  <option value="">📁 Home</option>
+</select>
 
 <input
   id="videoFile"
@@ -400,7 +343,6 @@ placeholder="Password"
 
 <button
   id="uploadBtn"
-  class="post-btn"
   onclick="uploadVideo()">
   📤 Post করুন
 </button>
@@ -410,7 +352,7 @@ placeholder="Password"
   class="message">
 </div>
 
-  </div>  <!-- VIDEOS -->  <div class="box"><h2>🎬 Posted Videos</h2>
+  </div>  <!-- POSTED VIDEOS -->  <div class="box"><h2>🎬 Posted Videos</h2>
 
 <div
   id="videoList"
@@ -437,7 +379,7 @@ supabase.createClient(
 
 
 /* =========================
-   ADMIN
+   ADMIN ID
 ========================= */
 
 const ADMIN_ID =
@@ -466,10 +408,19 @@ async function login(){
     document.getElementById("loginMessage");
 
 
-  if(!email || !password){
+  if(!email){
 
     msg.innerText =
-      "⚠️ Email এবং Password দিন";
+      "⚠️ Admin Email দিন";
+
+    return;
+  }
+
+
+  if(!password){
+
+    msg.innerText =
+      "⚠️ Password দিন";
 
     return;
   }
@@ -479,7 +430,7 @@ async function login(){
     "⏳ Login হচ্ছে...";
 
 
-  const {data,error} =
+  const result =
     await supabaseClient.auth
       .signInWithPassword({
         email:email,
@@ -487,17 +438,21 @@ async function login(){
       });
 
 
-  if(error){
+  if(result.error){
 
     msg.innerText =
       "❌ Login হয়নি: " +
-      error.message;
+      result.error.message;
 
     return;
   }
 
 
-  if(!data.user){
+  const user =
+    result.data.user;
+
+
+  if(!user){
 
     msg.innerText =
       "❌ User পাওয়া যায়নি";
@@ -506,7 +461,7 @@ async function login(){
   }
 
 
-  if(data.user.id !== ADMIN_ID){
+  if(user.id !== ADMIN_ID){
 
     await supabaseClient.auth.signOut();
 
@@ -519,7 +474,7 @@ async function login(){
 
   msg.innerText = "";
 
-  await showAdmin(data.user);
+  await showAdmin(user);
 }
 
 
@@ -569,13 +524,13 @@ async function logout(){
 
 async function checkSession(){
 
-  const {data} =
+  const result =
     await supabaseClient.auth
       .getSession();
 
 
   const session =
-    data.session;
+    result.data.session;
 
 
   if(!session){
@@ -601,7 +556,7 @@ async function checkSession(){
 
 async function loadFolders(){
 
-  const {data,error} =
+  const result =
     await supabaseClient
       .from("folders")
       .select("*")
@@ -611,16 +566,19 @@ async function loadFolders(){
       );
 
 
-  if(error){
+  if(result.error){
 
-    console.log(error);
+    console.log(
+      "FOLDER ERROR:",
+      result.error
+    );
 
     return;
   }
 
 
   folders =
-    data || [];
+    result.data || [];
 
 
   renderFolders();
@@ -657,7 +615,7 @@ function renderFolders(){
     );
 
 
-  home.innerHTML =
+  home.textContent =
     "🏠 Home";
 
 
@@ -690,9 +648,9 @@ function renderFolders(){
       );
 
 
-    div.innerHTML =
+    div.textContent =
       "📁 " +
-      escapeHtml(folder.name);
+      folder.name;
 
 
     div.onclick =
@@ -763,7 +721,6 @@ async function createFolder(){
       "folderName"
     );
 
-
   const msg =
     document.getElementById(
       "folderMessage"
@@ -787,31 +744,26 @@ async function createFolder(){
     "⏳ Folder তৈরি হচ্ছে...";
 
 
-  const id =
-    Date.now();
-
-
-  const {error} =
+  const result =
     await supabaseClient
       .from("folders")
       .insert({
-        id:id,
+        id:Date.now(),
         name:name
       });
 
 
-  if(error){
+  if(result.error){
 
     msg.innerText =
       "❌ Folder তৈরি হয়নি: " +
-      error.message;
+      result.error.message;
 
     return;
   }
 
 
   input.value = "";
-
 
   msg.innerText =
     "✅ Folder তৈরি হয়েছে";
@@ -853,15 +805,11 @@ async function deleteSelectedFolder(){
   }
 
 
-  const ok =
-    confirm(
-      '"' +
-      folder.name +
-      '" Folder delete করবেন?'
-    );
-
-
-  if(!ok){
+  if(!confirm(
+    '"' +
+    folder.name +
+    '" Folder delete করবেন?'
+  )){
     return;
   }
 
@@ -870,7 +818,7 @@ async function deleteSelectedFolder(){
     "⏳ Folder delete হচ্ছে...";
 
 
-  const {error} =
+  const result =
     await supabaseClient
       .from("folders")
       .delete()
@@ -880,18 +828,17 @@ async function deleteSelectedFolder(){
       );
 
 
-  if(error){
+  if(result.error){
 
     msg.innerText =
       "❌ Folder delete হয়নি: " +
-      error.message;
+      result.error.message;
 
     return;
   }
 
 
   selectedFolderId = null;
-
 
   msg.innerText =
     "✅ Folder delete হয়েছে";
@@ -904,7 +851,7 @@ async function deleteSelectedFolder(){
 
 
 /* =========================
-   SHOW SELECTED FILE
+   FILE NAME
 ========================= */
 
 function showFileName(){
@@ -913,7 +860,6 @@ function showFileName(){
     document.getElementById(
       "videoFile"
     );
-
 
   const box =
     document.getElementById(
@@ -936,7 +882,7 @@ function showFileName(){
 
 
 /* =========================
-   VIDEO UPLOAD
+   UPLOAD VIDEO
 ========================= */
 
 async function uploadVideo(){
@@ -946,18 +892,15 @@ async function uploadVideo(){
       "videoFile"
     );
 
-
   const folderValue =
     document.getElementById(
       "videoFolder"
     ).value;
 
-
   const msg =
     document.getElementById(
       "uploadMessage"
     );
-
 
   const btn =
     document.getElementById(
@@ -988,7 +931,6 @@ async function uploadVideo(){
 
 
   btn.disabled = true;
-
 
   msg.innerText =
     "⏳ Video Upload হচ্ছে...";
@@ -1033,12 +975,7 @@ async function uploadVideo(){
     extension;
 
 
-  /*
-    MIME type explicitly দেওয়া হচ্ছে।
-    এতে Browser ভিডিওটাকে সঠিকভাবে চিনতে পারবে।
-  */
-
-  const {error:uploadError} =
+  const uploadResult =
     await supabaseClient
       .storage
       .from("videos")
@@ -1046,20 +983,23 @@ async function uploadVideo(){
         filePath,
         file,
         {
-          contentType:file.type,
+          contentType:
+            file.type || "video/mp4",
+
           cacheControl:"3600",
+
           upsert:false
         }
       );
 
 
-  if(uploadError){
+  if(uploadResult.error){
 
     btn.disabled = false;
 
     msg.innerText =
       "❌ Upload হয়নি: " +
-      uploadError.message;
+      uploadResult.error.message;
 
     return;
   }
@@ -1074,7 +1014,6 @@ async function uploadVideo(){
 
     file_path:
       filePath
-
   };
 
 
@@ -1085,7 +1024,7 @@ async function uploadVideo(){
   }
 
 
-  const {error:dbError} =
+  const dbResult =
     await supabaseClient
       .from("videos")
       .insert(
@@ -1093,7 +1032,7 @@ async function uploadVideo(){
       );
 
 
-  if(dbError){
+  if(dbResult.error){
 
     await supabaseClient
       .storage
@@ -1105,10 +1044,9 @@ async function uploadVideo(){
 
     btn.disabled = false;
 
-
     msg.innerText =
       "❌ Video তথ্য save হয়নি: " +
-      dbError.message;
+      dbResult.error.message;
 
     return;
   }
@@ -1124,7 +1062,6 @@ async function uploadVideo(){
 
 
   btn.disabled = false;
-
 
   msg.innerText =
     "✅ Video Post হয়েছে ❤️";
@@ -1170,27 +1107,28 @@ async function loadVideos(){
   }
 
 
-  const {data,error} =
+  const result =
     await query;
 
 
-  if(error){
-
-    console.log(
-      "VIDEO TABLE ERROR:",
-      error
-    );
+  if(result.error){
 
     box.innerHTML =
       '<div class="empty">❌ Video লোড হয়নি<br>' +
-      escapeHtml(error.message) +
+      escapeHtml(
+        result.error.message
+      ) +
       '</div>';
 
     return;
   }
 
 
-  if(!data || data.length === 0){
+  const data =
+    result.data || [];
+
+
+  if(data.length === 0){
 
     box.innerHTML =
       '<div class="empty">🎬 এই Folder-এ কোনো Video নেই</div>';
@@ -1226,15 +1164,7 @@ async function loadVideos(){
         : "Home";
 
 
-    /*
-      Private bucket হওয়ায়
-      Signed URL তৈরি করা হচ্ছে।
-    */
-
-    const {
-      data:signedData,
-      error:signedError
-    } =
+    const signedResult =
       await supabaseClient
         .storage
         .from("videos")
@@ -1245,22 +1175,15 @@ async function loadVideos(){
 
 
     if(
-      signedError ||
-      !signedData ||
-      !signedData.signedUrl
+      signedResult.error ||
+      !signedResult.data ||
+      !signedResult.data.signedUrl
     ){
 
-      console.log(
-        "SIGNED URL ERROR:",
-        signedError,
-        video.file_path
-      );
-
-
-      const errorText =
-        signedError
-          ? signedError.message
-          : "Signed URL পাওয়া যায়নি";
+      const errorMessage =
+        signedResult.error
+          ? signedResult.error.message
+          : "Signed URL তৈরি হয়নি";
 
 
       card.innerHTML = `
@@ -1276,7 +1199,7 @@ async function loadVideos(){
 
           <div class="error-text">
             ❌ Video দেখা যাচ্ছে না<br>
-            ${escapeHtml(errorText)}
+            ${escapeHtml(errorMessage)}
           </div>
 
         </div>
@@ -1290,7 +1213,7 @@ async function loadVideos(){
 
 
     const url =
-      signedData.signedUrl;
+      signedResult.data.signedUrl;
 
 
     card.innerHTML = `
@@ -1298,8 +1221,12 @@ async function loadVideos(){
       <video
         controls
         preload="metadata"
-        playsinline
-        src="${escapeHtml(url)}">
+        playsinline>
+        <source
+          src="${escapeHtml(url)}"
+          type="video/${escapeHtml(
+            getVideoExtension(video.file_path)
+          )}">
       </video>
 
       <div class="video-info">
@@ -1338,6 +1265,30 @@ async function loadVideos(){
 
 
 /* =========================
+   VIDEO EXTENSION
+========================= */
+
+function getVideoExtension(path){
+
+  const name =
+    String(path || "");
+
+
+  if(!name.includes(".")){
+    return "mp4";
+  }
+
+
+  return name
+    .split(".")
+    .pop()
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g,"")
+    || "mp4";
+}
+
+
+/* =========================
    DOWNLOAD
 ========================= */
 
@@ -1371,20 +1322,14 @@ async function deleteVideo(
   filePath
 ){
 
-  const ok =
-    confirm(
-      "এই Video Delete করবেন?"
-    );
-
-
-  if(!ok){
+  if(!confirm(
+    "এই Video Delete করবেন?"
+  )){
     return;
   }
 
 
-  const {
-    error:storageError
-  } =
+  const storageResult =
     await supabaseClient
       .storage
       .from("videos")
@@ -1393,18 +1338,18 @@ async function deleteVideo(
       ]);
 
 
-  if(storageError){
+  if(storageResult.error){
 
     alert(
       "❌ Video file delete হয়নি: " +
-      storageError.message
+      storageResult.error.message
     );
 
     return;
   }
 
 
-  const {error:dbError} =
+  const dbResult =
     await supabaseClient
       .from("videos")
       .delete()
@@ -1414,11 +1359,11 @@ async function deleteVideo(
       );
 
 
-  if(dbError){
+  if(dbResult.error){
 
     alert(
       "❌ Video তথ্য delete হয়নি: " +
-      dbError.message
+      dbResult.error.message
     );
 
     return;
